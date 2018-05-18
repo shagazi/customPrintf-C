@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 17:19:07 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/17 18:31:07 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/17 22:07:37 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,15 @@ char	*convert_int_toalpha(void *p, fmt_list *fmt)
 
 int bytelen(fmt_list *fmt)
 {
-	int j;
 	int i;
 
 	i = 0;
-	j = ft_strlen(fmt->formatstr);
-	if (j > 1)
+	if (fmt->formatstr != NULL)
 	{
-		if (fmt->width > j)
+		if (fmt->width > (int)ft_strlen(fmt->formatstr))
 			i = fmt->width;
-		if (fmt->width < j)
-			i = j;
+		if (fmt->width < (int)ft_strlen(fmt->formatstr))
+			i = ft_strlen(fmt->formatstr);
 	}
 	else
 	{

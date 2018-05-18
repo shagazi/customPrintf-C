@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 23:45:47 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/17 15:11:06 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/17 23:27:44 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,4 +106,6 @@ void formatcheck(va_list *arg, fmt_list *fmt)
 		char_check(fmt, arg);
 	if (ft_strchr("CS", f))
 		wchar_check(arg, fmt);
+	if (f == '%')
+		fmt->formatchar ='%';
 }

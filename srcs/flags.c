@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/11 18:15:06 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/17 17:55:14 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/17 23:27:43 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,16 @@ void flaghex(fmt_list *fmt)
 	{
 		if (fmt->format == 'o' && fmt->presicion == 0)
 			ft_putnbr(0);
-		if(fmt->format == 'x')
+		if(fmt->format == 'x' && ft_strcmp(fmt->formatstr, "0"))
+		{
 			ft_putstr("0x");
-		if(fmt->format == 'X')
+			fmt->byte_len += 2;
+		}
+		if(fmt->format == 'X' && ft_strcmp(fmt->formatstr, "0"))
+		{
 			ft_putstr("0X");
+			fmt->byte_len += 2;
+		}
 	}
 }
 
@@ -75,6 +81,6 @@ void callflags(fmt_list *fmt, int strlength)
 	if (ft_strchr(fmt->flags, '+') && (!(ft_strchr(fmt->flags, '-')) &&
 	(!(ft_strchr(fmt->flags, '#')))))
 		flagplus(fmt);
-	if (ft_strchr(fmt->flags, '#'))
+	if (ft_strchr(fmt->flags, '#') && (!(ft_strchr(fmt->flags, '-'))))
 		flaghex(fmt);
 }
