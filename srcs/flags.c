@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/11 18:15:06 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/17 23:27:43 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/20 23:42:55 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,25 @@ void flagspace(fmt_list *fmt, int strlength)
 	i = fmt->width;
 	if(ft_strchr(fmt->flags, '+'))
 		i--;
-	if(ft_strchr(fmt->flags, '#'))
-		i -= 2;
+	// if (ft_strchr(fmt->flags, '-'))
+	// {
+	// //	printoutput(fmt);
 	while(i > strlength)
 	{
-		ft_putchar(' ');
+		fmt->spaces = ft_strappend(fmt->spaces, " ");
 		i--;
 	}
+	// }
+	// else
+	// {
+		// while(i > strlength)
+		// {
+		// 	fmt->spaces = ft_strjoin(fmt->spaces, " ");
+		// 	i--;
+		// }
+	// //	printoutput(fmt);
+	// }
+	// fmt->byte_len += (fmt->width - strlength);
 }
 
 void flagzero(fmt_list *fmt, int strlength)
@@ -35,32 +47,21 @@ void flagzero(fmt_list *fmt, int strlength)
 	i = fmt->width;
 	if(ft_strchr(fmt->flags, '+'))
 		i--;
-	if(ft_strchr(fmt->flags, '#'))
-		i -= 2;
 	while(i > strlength)
 	{
-		ft_putchar('0');
+		fmt->zeros = ft_strappend(fmt->zeros, "0");
 		i--;
 	}
 }
 
 void flaghex(fmt_list *fmt)
 {
-	if(ft_strchr(fmt->flags, '#'))
-	{
-		if (fmt->format == 'o' && fmt->presicion == 0)
-			ft_putnbr(0);
+	if (fmt->format == 'o')
+			fmt->hex = "0";
 		if(fmt->format == 'x' && ft_strcmp(fmt->formatstr, "0"))
-		{
-			ft_putstr("0x");
-			fmt->byte_len += 2;
-		}
+			fmt->hex = "0x";
 		if(fmt->format == 'X' && ft_strcmp(fmt->formatstr, "0"))
-		{
-			ft_putstr("0X");
-			fmt->byte_len += 2;
-		}
-	}
+			fmt->hex = "0X";
 }
 
 void flagplus(fmt_list *fmt)
@@ -68,8 +69,10 @@ void flagplus(fmt_list *fmt)
 	char f;
 
 	f = fmt->format;
-	if (ft_strchr("di", f) && ft_strchr(fmt->flags, '+'))
-		ft_putchar(fmt->sign);
+	if (ft_strchr("di", f) && ft_strchr(fmt->flags, '+') &&
+	(!(ft_strchr(fmt->formatstr, '-'))))
+		fmt->formatstr = ft_strappend(&fmt->sign, fmt->formatstr);
+
 }
 
 void callflags(fmt_list *fmt, int strlength)
@@ -81,6 +84,4 @@ void callflags(fmt_list *fmt, int strlength)
 	if (ft_strchr(fmt->flags, '+') && (!(ft_strchr(fmt->flags, '-')) &&
 	(!(ft_strchr(fmt->flags, '#')))))
 		flagplus(fmt);
-	if (ft_strchr(fmt->flags, '#') && (!(ft_strchr(fmt->flags, '-'))))
-		flaghex(fmt);
 }

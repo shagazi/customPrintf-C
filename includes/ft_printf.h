@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/30 22:22:47 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/17 19:58:45 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/20 23:21:33 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,19 @@
 # include "../libft/libft.h"
 
 typedef struct f_list{
-	char *flags;
 	int width;
 	int presicion;
 	int modifier;
 	char format;
 	int byte_len;
-	void *formatstr;
 	char formatchar;
 	char *basenumber;
+	void *formatstr;
 	char sign;
+	char *flags;
+	char *hex;
+	char *zeros;
+	char *spaces;
 }fmt_list;
 
 /************************* Length Specifiers *************************/
@@ -52,6 +55,17 @@ typedef struct f_list{
 /*** Hex decimal system is a power of 16 ***/
 # define HEX "0123456789abcdef"
 # define HEXX "0123456789ABCDEF"
+
+# define FMTLEN(fmt) 	((int)ft_strlen((char *)fmt->formatstr))
+# define HEXLEN(fmt)	(int)ft_strlen(fmt->hex)
+# define ZEROLEN(fmt)	(int)ft_strlen(fmt->zeros)
+# define SPACELEN(fmt)	(int)ft_strlen(fmt->spaces)
+# define FLGZERO(fmt) 	ft_strchr(fmt->flags, '0')
+# define FLGNEG(fmt) 	ft_strchr(fmt->flags, '-')
+# define FLGPLUS(fmt) 	ft_strchr(fmt->flags, '+')
+# define FLGHASH(fmt) 	ft_strchr(fmt->flags, '#')
+# define FLGSPACE(fmt) 	ft_strchr(fmt->flags, ' ')
+
 
 void 	getoutputhelp(fmt_list *fmt);
 void 	getoutput(fmt_list *fmt, va_list *arg);
@@ -82,5 +96,9 @@ int 	bytelen(fmt_list *fmt);
 void 	presicionstring(fmt_list *fmt, int i);
 void 	intpresicion(fmt_list *fmt);
 void 	applypresicion(fmt_list *fmt);
+void 	presicionzero(fmt_list *fmt);
+
+void 	formathex(fmt_list *fmt);
+void 	saveflags(fmt_list *fmt);
 
 #endif

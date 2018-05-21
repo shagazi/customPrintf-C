@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 17:19:07 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/17 22:07:37 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/20 13:55:45 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int bytelen(fmt_list *fmt)
 	{
 		if (fmt->width > (int)ft_strlen(fmt->formatstr))
 			i = fmt->width;
-		if (fmt->width < (int)ft_strlen(fmt->formatstr))
+		if (fmt->width <= (int)ft_strlen(fmt->formatstr))
 			i = ft_strlen(fmt->formatstr);
 	}
 	else

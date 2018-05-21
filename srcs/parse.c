@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/30 22:48:00 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/17 23:27:46 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/20 15:42:46 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,9 @@ int parse_flags(char *str, fmt_list *fmt)
 	return (i);
 }
 
+
+
+
 int parse_percent(char *str, fmt_list *fmt, va_list *arg)
 {
 	int i;
@@ -98,6 +101,10 @@ int parse_percent(char *str, fmt_list *fmt, va_list *arg)
 	fmt->basenumber = "0123456789";
 	fmt->width = 0;
 	fmt->formatstr = NULL;
+	fmt->flags = NULL;
+	fmt->zeros = NULL;
+	fmt->spaces = NULL;
+	fmt->hex = NULL;
 	fmt->formatchar = '\0';
 	i += parse_flags(str, fmt);
 	i += parse_width(str + i, fmt, arg);

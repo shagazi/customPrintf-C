@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 23:45:47 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/17 23:27:44 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/20 23:22:31 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,12 +96,18 @@ void char_check(fmt_list *fmt, va_list *arg)
 void formatcheck(va_list *arg, fmt_list *fmt)
 {
 	char f;
+	// char *tmp;
 
 	f = fmt->format;
+	// tmp = NULL;
 	if (ft_strchr("di", f))
 		fmt->formatstr = (char *)signedcast(arg, fmt);
 	if (ft_strchr("oOuUxX", f))
+	{
 		fmt->formatstr = (char *)unsignedcast(arg, fmt);
+		// if (ft_strcmp(tmp, "0"))
+			// fmt->formatstr = tmp;
+	}
 	if (ft_strchr("cs", f))
 		char_check(fmt, arg);
 	if (ft_strchr("CS", f))

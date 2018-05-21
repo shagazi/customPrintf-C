@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 20:29:12 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/17 23:27:45 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/20 23:42:54 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ void getoutputhelp(fmt_list *fmt)
 		if (ft_strchr(fmt->flags, '#') && (ft_strchr(fmt->flags, '0')))
 		{
 			flaghex(fmt);
-			flagzero(fmt, ft_strlen(fmt->formatstr));
+			printoutput(fmt);
+			flagspace(fmt, ft_strlen(fmt->formatstr));
 		}
-		printoutput(fmt);
 		if(fmt->width != 0 && (!(ft_strchr(fmt->flags, '0'))))
 			flagspace(fmt, ft_strlen(fmt->formatstr));
 		callflags(fmt, ft_strlen(fmt->formatstr));
@@ -53,28 +53,36 @@ void getoutputhelp(fmt_list *fmt)
 void getoutput(fmt_list *fmt, va_list *arg)
 {
 	formatcheck(arg, fmt);
-	applypresicion(fmt);
-	if (ft_strchr(fmt->flags, '-'))
+	saveflags(fmt);
+	if (ft_strchr("oOxX", fmt->format))
 	{
-		if (ft_strchr(fmt->flags, '+')) /*&& (!(ft_strchr(fmt->flags, '#'))))*/
-			flagplus(fmt);
-		getoutputhelp(fmt);
+		formathex(fmt);
+		ft_putstr(fmt->formatstr);
 	}
-	else
+	if (ft_strchr("disScC", fmt->format))
 	{
-		if(fmt->format != 'c' && fmt->format != '%')
+		if (ft_strchr(fmt->flags, '-'))
 		{
-			if(fmt->width != 0 && (!(ft_strchr(fmt->flags, '0'))))
-				flagspace(fmt, ft_strlen(fmt->formatstr));
-			callflags(fmt, ft_strlen(fmt->formatstr));
-			printoutput(fmt);
+			if (ft_strchr(fmt->flags, '+')) /*&& (!(ft_strchr(fmt->flags, '#'))))*/
+				flagplus(fmt);
+			getoutputhelp(fmt);
 		}
 		else
 		{
-			if(fmt->width != 0 && (!(ft_strchr(fmt->flags, '0'))))
-				flagspace(fmt, 1);
-			callflags(fmt, 1);
-			printoutput(fmt);
+			if(fmt->format != 'c' && fmt->format != '%')
+			{
+				if(fmt->width != 0 && (!(ft_strchr(fmt->flags, '0'))))
+					flagspace(fmt, ft_strlen(fmt->formatstr));
+				callflags(fmt, ft_strlen(fmt->formatstr));
+				printoutput(fmt);
+			}
+			else
+			{
+				if(fmt->width != 0 && (!(ft_strchr(fmt->flags, '0'))))
+					flagspace(fmt, 1);
+				callflags(fmt, 1);
+				printoutput(fmt);
+			}
 		}
 	}
 }
@@ -98,7 +106,7 @@ int ft_printf(char *format, ...)
 
 			i += 1;
 			i += parse_percent(format + i, fmt, &arg);
-			fmt->byte_len += bytelen(fmt);
+			fmt->byte_len = bytelen(fmt);
 		}
 		else
 		{
@@ -111,9 +119,3 @@ int ft_printf(char *format, ...)
 	va_end(arg);
 	return(fmt->byte_len);
 }
-//
-// int main()
-// {
-// 	 ft_printf("%#x", 42);
-// 	return(0);
-// }
