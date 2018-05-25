@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 23:45:47 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/20 23:22:31 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/24 15:07:17 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char *signedcast(va_list *arg, fmt_list *fmt)
 	else
 		n = (int)va_arg(*arg, int);
 	if (n < 0)
-		fmt->sign = '-';
+		fmt->sign = "-";
 	return(convert_int_toalpha((void *)&n, fmt));
 }
 
@@ -82,36 +82,39 @@ void  wchar_check(va_list *arg, fmt_list *fmt)
 
 void char_check(fmt_list *fmt, va_list *arg)
 {
-	char c;
-
-	if(fmt->format == 'c')
-	{
-		c = (char)va_arg(*arg, int);
-		fmt->formatchar = c;
-	}
-	if(fmt->format == 's')
+	if (fmt->format == 'c')
+		fmt->formatchar = (char)va_arg(*arg, int);
+	if (fmt->format == 's')
 		fmt->formatstr = ft_strdup(va_arg(*arg, char *));
 }
 
 void formatcheck(va_list *arg, fmt_list *fmt)
 {
 	char f;
-	// char *tmp;
+	char *tmp;
 
 	f = fmt->format;
-	// tmp = NULL;
-	if (ft_strchr("di", f))
-		fmt->formatstr = (char *)signedcast(arg, fmt);
-	if (ft_strchr("oOuUxX", f))
+	if (ft_strchr("dDi", f))
 	{
-		fmt->formatstr = (char *)unsignedcast(arg, fmt);
-		// if (ft_strcmp(tmp, "0"))
-			// fmt->formatstr = tmp;
+		fmt->formatstr = (char *)signedcast(arg, fmt);
+		if (ft_strchr(fmt->formatstr, '-'))
+		{
+			tmp = ft_strdup(ft_strchr(fmt->formatstr, '-') + 1);
+			free(fmt->formatstr);
+			fmt->formatstr = tmp;
+			fmt->sign = "-";
+		}
 	}
+	if (ft_strchr("oOuUxX", f))
+		fmt->formatstr = (char *)unsignedcast(arg, fmt);
 	if (ft_strchr("cs", f))
 		char_check(fmt, arg);
-	if (ft_strchr("CS", f))
+	if (ft_strchr("C", f))
 		wchar_check(arg, fmt);
+	if (fmt->format == 'p') {
+		void *ptr = va_arg(*arg, void *);
+		fmt->formatstr = convert_int_toalpha(ptr, fmt);
+	}
 	if (f == '%')
-		fmt->formatchar ='%';
+		fmt->formatchar = '%';
 }

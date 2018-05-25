@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/30 22:48:00 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/20 15:42:46 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/24 15:34:48 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int parse_precision(char *str, fmt_list *fmt, va_list *arg)
 		}
 		else
 			fmt->presicion = ft_atoi(&str[1]);
+		fmt->presicionflag = 1;
 	}
 	return (i);
 }
@@ -60,12 +61,20 @@ int parse_width(char *str, fmt_list *fmt, va_list *arg)
 	int i;
 
 	i = 0;
-	while(str[i] >= '0' && str[i] <= '9')
+	while (str[i] >= '0' && str[i] <= '9')
 		i++;
-	if(str[i] == '*')
+	if (str[i] == '*')
 	{
 		i++;
-		fmt->width = va_arg(*arg, int);
+		if (str[i] >= '0' && str[i] <= '9')
+		{
+			va_arg(*arg, int);
+			fmt->width = ft_atoi(str + i);
+			while (str[i] >= '0' && str[i] <= '9')
+				i++;
+		}
+		else
+			fmt->width = va_arg(*arg, int);
 	}
 	else
 		fmt->width = ft_atoi(str);
@@ -87,25 +96,22 @@ int parse_flags(char *str, fmt_list *fmt)
 	return (i);
 }
 
-
-
-
 int parse_percent(char *str, fmt_list *fmt, va_list *arg)
 {
 	int i;
 
 	i = 0;
 	fmt->modifier = 0;
-	fmt->sign = '+';
 	fmt->presicion = 0;
 	fmt->basenumber = "0123456789";
 	fmt->width = 0;
 	fmt->formatstr = NULL;
+	fmt->sign = "+";
 	fmt->flags = NULL;
 	fmt->zeros = NULL;
 	fmt->spaces = NULL;
 	fmt->hex = NULL;
-	fmt->formatchar = '\0';
+	fmt->formatchar = 0;
 	i += parse_flags(str, fmt);
 	i += parse_width(str + i, fmt, arg);
 	i += parse_precision(str + i, fmt, arg);

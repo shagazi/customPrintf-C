@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/30 22:22:47 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/20 23:21:33 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/24 15:51:01 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,17 @@
 
 typedef struct f_list{
 	int width;
+	// int i;
+	// int k;
 	int presicion;
+	int presicionflag;
 	int modifier;
 	char format;
 	int byte_len;
 	char formatchar;
 	char *basenumber;
 	void *formatstr;
-	char sign;
+	char *sign;
 	char *flags;
 	char *hex;
 	char *zeros;
@@ -97,8 +100,17 @@ void 	presicionstring(fmt_list *fmt, int i);
 void 	intpresicion(fmt_list *fmt);
 void 	applypresicion(fmt_list *fmt);
 void 	presicionzero(fmt_list *fmt);
+void 	negpresicionzero(fmt_list *fmt);
 
 void 	formathex(fmt_list *fmt);
-void 	saveflags(fmt_list *fmt);
+void 	hexflags(fmt_list *fmt);
+
+void 	strflag(fmt_list *fmt);
+void 	charflag(fmt_list *fmt);
+void 	formatstr(fmt_list *fmt);
+void 	printchar(fmt_list *fmt);
+
+void 	formatint(fmt_list *fmt);
+void 	intflag(fmt_list *fmt);
 
 #endif
