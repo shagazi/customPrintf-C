@@ -6,7 +6,7 @@
 #    By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/17 14:59:54 by shagazi           #+#    #+#              #
-#    Updated: 2018/05/25 16:49:02 by shagazi          ###   ########.fr        #
+#    Updated: 2018/05/25 16:50:07 by shagazi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME = libftprintf.a
@@ -58,7 +58,7 @@ clean:
 fclean: clean
 	@make -C $(LIBFT_DIR) fclean
 	@/bin/rm -f $(NAME)
-	@/bin/rm -f $(TEST)
+	#@/bin/rm -f $(TEST)
 	@echo "\`ft_printf\` [INFO] Executable removed"
 
 #test: all
