@@ -6,7 +6,7 @@
 #    By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/17 14:59:54 by shagazi           #+#    #+#              #
-#    Updated: 2018/05/21 23:02:55 by shagazi          ###   ########.fr        #
+#    Updated: 2018/05/25 16:49:02 by shagazi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME = libftprintf.a
@@ -61,8 +61,8 @@ fclean: clean
 	@/bin/rm -f $(TEST)
 	@echo "\`ft_printf\` [INFO] Executable removed"
 
-test: all
-	gcc $(DEBUG) -w test/*.c -L . -l ftprintf $(INCLUDES) -o $(TEST)
+#test: all
+#	gcc $(DEBUG) -w test/*.c -L . -l ftprintf $(INCLUDES) -o $(TEST)
 
 re: fclean all
 
