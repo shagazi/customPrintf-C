@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 18:20:38 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/26 19:10:29 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/26 19:39:44 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void intflag(fmt_list *fmt)
 		flagzero(fmt, (FMTLEN(fmt)));
 	else if (fmt->width != (FMTLEN(fmt) + SPACELEN(fmt)) && fmt->width != 0)
 		flagspace(fmt, (FMTLEN(fmt) + SPACELEN(fmt)));
-	if (FLGSPACE(fmt) && (!FLGPLUS(fmt)) && (ft_strcmp(fmt->sign, "-")) &&
-	fmt->width == 0 && (!(ft_strchr("uU", fmt->format))))
-		flagspace(fmt, 0);
+	if (FLGSPACE(fmt) && (ft_strcmp(fmt->sign, "-")) &&
+		fmt->width < fmt->presicion && (!(ft_strchr("uU", fmt->format))))
+		flagspace(fmt, fmt->width - 1);
 }
