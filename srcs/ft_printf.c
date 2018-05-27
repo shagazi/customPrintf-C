@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 20:29:12 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/26 18:44:37 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/26 18:52:10 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int ft_printf(char *format, ...)
 //
 // int main()
 // {
-// 	ft_printf("% 4.5i", 42);
+// 	ft_printf("% i", -42);
 /*
 	  // ft_printf("@moulitest: %#.o %#.0o", 0, 0);
 // 	  ft_printf("% 10.5d", 4242);
