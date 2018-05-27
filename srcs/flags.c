@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/11 18:15:06 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/26 18:17:41 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/26 18:44:17 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,8 @@ void flagundef(fmt_list *fmt)
 		if (flagstr[i] == '0' && ft_strchr(flagstr, '0')
 			&& ft_strchr(flagstr, '-'))
 			i++;
-		if (flagstr[i] == ' ' &&
-			(fmt->width > 0 || (!FLGMINUS(fmt)) || fmt->format == 'u'))
+		if (flagstr[i] == ' ' && (fmt->width > 0 || (!FLGMINUS(fmt))
+			|| fmt->format == 'u') && (!ft_strchr("di", fmt->format)))
 			i++;
 		newstr = ft_strncat(newstr, &flagstr[i], 1);
 		i++;
