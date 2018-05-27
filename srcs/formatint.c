@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 18:20:38 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/26 18:51:58 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/26 19:09:02 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void formatint(fmt_list *fmt)
 	}
 	else
 	{
-		if (FLGSPACE(fmt) && (ft_strcmp(fmt->sign, "-"))) // && fmt->width != 0)))*/
+		if ((FLGSPACE(fmt) || ft_strcmp(fmt->sign, "-")) && fmt->width == 0)
 			str = ft_strdup(" ");
 		if (SPACELEN(fmt) && fmt->width >= 0)
 			str = ft_strappend(str, fmt->spaces);
