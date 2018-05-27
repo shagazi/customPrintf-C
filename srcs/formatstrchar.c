@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 13:46:23 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/25 17:10:37 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/26 17:16:26 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,12 @@
 
 void printchar(fmt_list *fmt)
 {
-	char *ptr;
-
-	ptr = ft_strnew(1);
-	ptr = ft_strncpy(ptr, &fmt->formatchar, 1);
 	if (FLGNEG(fmt))
 	{
 		if (fmt->spaces != NULL)
 		{
-			fmt->formatstr = ft_strcat(ptr, fmt->spaces);
+			fmt->formatstr = ft_strappend(fmt->formatstr, fmt->spaces);
+			ft_putchar(fmt->formatchar);
 			ft_putstr(fmt->formatstr);
 			// fmt->byte_len += 1;
 		}
@@ -33,8 +30,9 @@ void printchar(fmt_list *fmt)
 	{
 		if (fmt->spaces != NULL)
 		{
-			fmt->formatstr = ft_strappend(fmt->spaces, ptr);
+			fmt->formatstr = ft_strappend(fmt->spaces, fmt->formatstr);
 			ft_putstr(fmt->formatstr);
+			ft_putchar(fmt->formatchar);
 			// fmt->byte_len += 1;
 		}
 		else

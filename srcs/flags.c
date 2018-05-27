@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/11 18:15:06 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/25 17:13:17 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/26 18:17:41 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void flagzero(fmt_list *fmt, int strlength)
 
 void flaghex(fmt_list *fmt)
 {
-	if (fmt->format == 'o' && ft_strcmp(fmt->formatstr, "0"))
+	if (fmt->format == 'o' )/*&& (!ft_strcmp(fmt->formatstr, "0")))*/
 			fmt->hex = "0";
 		if((fmt->format == 'x' && ft_strcmp(fmt->formatstr, "0")) ||
 			fmt->format == 'p')
@@ -62,4 +62,33 @@ void flagplus(fmt_list *fmt)
 	(!(ft_strchr(fmt->formatstr, '-'))))
 		fmt->sign = "+";
 
+}
+
+void flagundef(fmt_list *fmt)
+{
+	int i;
+	char *newstr;
+	char *flagstr;
+
+	i = 0;
+	newstr = ft_strnew(0);
+	flagstr = fmt->flags;
+	while (flagstr[i] != '\0')
+	{
+		if (flagstr[i] == ' ' && ft_strchr(flagstr, ' ')
+			&& ft_strchr(flagstr, '+'))
+			i++;
+		if (flagstr[i] == '0' && ft_strchr(flagstr, '0')
+			&& ft_strchr(flagstr, '-'))
+			i++;
+		if (flagstr[i] == ' ' &&
+			(fmt->width > 0 || (!FLGMINUS(fmt)) || fmt->format == 'u'))
+			i++;
+		newstr = ft_strncat(newstr, &flagstr[i], 1);
+		i++;
+	}
+	i = ft_strlen(newstr);
+	newstr[i] = '\0';
+	fmt->flags = ft_strdup(newstr);
+	free(newstr);
 }

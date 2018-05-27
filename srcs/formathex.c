@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 12:29:08 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/24 14:51:55 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/26 18:22:41 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,11 @@ void hexflags(fmt_list *fmt)
 	}
  	if (FLGNEG(fmt))
 		flagspace(fmt, (FMTLEN(fmt) + HEXLEN(fmt)));
-	if (FLGZERO(fmt) && (!FLGNEG(fmt)))
+	if (FLGZERO(fmt))
 		flagzero(fmt, (FMTLEN(fmt) + HEXLEN(fmt)));
 	if (!FLGZERO(fmt) && (!FLGNEG(fmt)) && fmt->width > 0)
 		flagspace(fmt, (FMTLEN(fmt) + HEXLEN(fmt)));
-	if (FLGSPACE(fmt) && (!FLGPLUS(fmt)) && fmt->width == 0)
-		flagspace(fmt, 1);
+	if (FLGSPACE(fmt) && fmt->width == 0)
+		fmt->spaces  = " ";
+		//flagspace(fmt, 1);
 }

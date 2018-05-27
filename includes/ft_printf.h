@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/30 22:22:47 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/24 15:51:01 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/26 18:04:50 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ typedef struct f_list{
 # define FLGPLUS(fmt) 	ft_strchr(fmt->flags, '+')
 # define FLGHASH(fmt) 	ft_strchr(fmt->flags, '#')
 # define FLGSPACE(fmt) 	ft_strchr(fmt->flags, ' ')
-
+# define FLGMINUS(fmt)	ft_strcmp(fmt->sign, "-")
 
 void 	getoutputhelp(fmt_list *fmt);
 void 	getoutput(fmt_list *fmt, va_list *arg);
@@ -112,5 +112,6 @@ void 	printchar(fmt_list *fmt);
 
 void 	formatint(fmt_list *fmt);
 void 	intflag(fmt_list *fmt);
+void 	flagundef(fmt_list *fmt);
 
 #endif

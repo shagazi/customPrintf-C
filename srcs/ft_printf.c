@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 20:29:12 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/25 17:27:08 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/26 18:20:08 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 void getoutput(fmt_list *fmt, va_list *arg)
 {
 	formatcheck(arg, fmt);
+	flagundef(fmt);
 	if (ft_strchr("oOxXp", fmt->format))
 	{
 		hexflags(fmt);
@@ -97,16 +98,43 @@ int ft_printf(char *format, ...)
 	free(fmt);
 	return (k);
 }
-
+//
 // int main()
 // {
-// 	int x =   printf("Hash: %#o\n", 0);
-// 	printf("%d\n", x);
-//   	int y =   ft_printf("ftHash:%#o\n", 0);
-// 	printf("%d\n", y);
-// 	int z =   printf("Nohash: %o\n", 0);
-// 	printf("%d\n", z);
-// 	int a =   ft_printf("ftnohash: %o\n", 0);
-// 	printf("%d\n", a);
-//   	return(0);
+// 	ft_printf("%#6o", 2500);
+	  // ft_printf("@moulitest: %#.o %#.0o", 0, 0);
+// 	  ft_printf("% 10.5d", 4242);
+//   ft_printf("@moulitest: %#.x %#.0x", 0, 0);
+  // // // // //
+// 	ft_printf("%2c\n", 0);
+// // // // 	ft_printf("@moulitest: %#.o %#.0o\n", 0, 0);
+// // 	// ft_printf("% d\n", 42);
+	// ft_printf("% d\n", -42);
+// // 	ft_printf("% 10.5d\n", 4242);
+// // 	ft_printf("% u\n", 4294967295);
+// // 	printf("%2c\n", 0);
+// // 	printf("@moulitest: %#.o %#.0o\n", 0, 0);
+// // 	printf("% d\n", 42);
+// // 	printf("% d\n", -42);
+// // 	printf("% 10.5d\n", 4242);
+// // 	printf("% u\n", 4294967295);
+//
+// // 	ft_printf("%+-0 5.6d\n", 42);
+// // 	// ft_printf("%+-0 6.5d\n", 42);
+// // 	printf("%+-0 5.6d\n", 42);
+// // 	// printf("% 6.5d\n", 42);
+// // 	// int x =   printf("Hash: %#o\n", 0);
+// // 	// printf("%d\n", x);
+// //   	// int y =   ft_printf("ftHash:%#o\n", 0);
+// // 	// printf("%d\n", y);
+// // 	// int z =   printf("Nohash: %o\n", 0);
+// // 	// printf("%d\n", z);
+// // 	// int a =   ft_printf("ftnohash: %o\n", 0);
+// // 	// printf("%d\n", a);
+// //
+// // 	// int d = ft_printf("% 4.5i\n", 42);
+// // 	// printf("%d\n", d);
+// // 	// int e = printf("% 4.5i\n", 42);
+// // 	// printf("%d\n", e);
+// //   	return(0);
 // }
