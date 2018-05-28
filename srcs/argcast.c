@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 23:45:47 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/26 17:11:12 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/28 15:25:57 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char *signedcast(va_list *arg, fmt_list *fmt)
 	else if (m == MOD_Z)
 		n = va_arg(*arg, size_t);
 	else
-		n = (int)va_arg(*arg, int);
+		n = (long long int)va_arg(*arg, long long int);
 	if (n < 0)
 		fmt->sign = "-";
 	return(convert_int_toalpha((void *)&n, fmt));
@@ -94,7 +94,7 @@ void formatcheck(va_list *arg, fmt_list *fmt)
 	char *tmp;
 
 	f = fmt->format;
-	if (ft_strchr("dDi", f))
+	if (ft_strchr("Ddi", f))
 	{
 		fmt->formatstr = (char *)signedcast(arg, fmt);
 		if (ft_strchr(fmt->formatstr, '-'))
@@ -109,7 +109,7 @@ void formatcheck(va_list *arg, fmt_list *fmt)
 		fmt->formatstr = (char *)unsignedcast(arg, fmt);
 	if (ft_strchr("cs", f))
 		char_check(fmt, arg);
-	if (ft_strchr("C", f))
+	if (ft_strchr("CS", f))
 		wchar_check(arg, fmt);
 	if (fmt->format == 'p') {
 		void *ptr = va_arg(*arg, void *);

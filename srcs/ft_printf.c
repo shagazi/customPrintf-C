@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 20:29:12 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/26 19:40:06 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/28 15:25:49 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,11 @@ int ft_printf(char *format, ...)
 //
 // int main()
 // {
+// 	int x = ft_printf("%D\n", -8000);
+// 	printf("%d\n", x);
+//
+// 	int y = printf("%D\n", -8000);
+// 	printf("%d\n", y);
 // // 	ft_printf("% 4i", 42);
 // 	ft_printf("% 4.5i\n", 42);
 // 	ft_printf("% *.5i\n", 42);
