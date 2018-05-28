@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 13:46:23 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/26 17:16:26 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/28 16:10:40 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,10 @@ void printchar(fmt_list *fmt)
 			// fmt->byte_len += 1;
 		}
 		else
+		{
+			printf("here %d\n", fmt->formatchar);
 			ft_putchar(fmt->formatchar);
+		}
 	}
 }
 
@@ -70,5 +73,10 @@ void charflag(fmt_list *fmt)
 		flagspace(fmt, 1);
 	if (fmt->width < 0)
 		flagspace(fmt, 1);
-	printchar(fmt);
+	// if (fmt->format == 'c')
+		printchar(fmt);
+	// else
+	// 	{
+    //
+	// 	}
 }

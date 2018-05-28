@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 20:29:12 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/28 15:25:49 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/28 16:15:13 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ void getoutput(fmt_list *fmt, va_list *arg)
 		formathex(fmt);
 		ft_putstr(fmt->formatstr);
 	}
-	if (ft_strchr("sSC", fmt->format))
+	if (ft_strchr("sS", fmt->format))
 	{
 		strflag(fmt);
 		formatstr(fmt);
 		ft_putstr(fmt->formatstr);
 	}
-	if (ft_strchr("c", fmt->format) || fmt->format == '%')
+	if (ft_strchr("cC", fmt->format) || fmt->format == '%')
 		charflag(fmt);
 	if (ft_strchr("dDiuU", fmt->format))
 	{
@@ -101,6 +101,33 @@ int ft_printf(char *format, ...)
 //
 // int main()
 // {
+// 	int x;
+// 	int y;
+// 	// wchar_t		c = L'\x82';
+// 	// wchar_t wz [3] = L"@@";
+//
+// 	// x = ft_printf("Lalalala, %d%% des gens qui parlent %C Ly adorent %s. Ou Presque. %d, %u, %X, %c", 100, L'à', "Ly", 2, 10, 10000, '\n', "ôHohoho");
+// 	// x =  ft_printf("%C\n", L'à');
+// 	// x = ft_printf("%ls\n", wz);
+// 	// x += ft_printf("%C\n", L'ø');
+// 	// x = ft_printf("|Kashim a %u histoires à raconter|\n", 1001);
+// 	// x += ft_printf("|Il fait au moins %u|\n", -8000);
+// 	// x += ft_printf("|%x|\n", -0);
+// 	// x += ft_printf("|%o|\n", 0);
+// 	printf("%d\n", x);
+//
+// 	// y = printf("Lalalala, %d%% des gens qui parlent %C Ly adorent %s. Ou Presque. %d, %u, %X, %c", 100, L'à', "Ly", 2, 10, 10000, '\n', "ôHohoho");
+//  	y = printf("%C\n", L'à');
+// 	// y = ft_printf("%ls\n", wz);
+// 	// y = ft_printf("%C\n", c);
+// 	// y += ft_printf("%C\n", L'ø');
+// 	// y = printf("|Kashim a %u histoires à raconter|\n", 1001);
+// 	// y += printf("|Il fait au moins %u|\n", -8000);
+// 	// y += printf("|%x|\n", -0);
+// 	// y += printf("|%o|\n", 0);
+// 	printf("%d\n", y);
+
+// }
 // 	int x = ft_printf("%D\n", -8000);
 // 	printf("%d\n", x);
 //
