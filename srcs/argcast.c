@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 23:45:47 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/28 15:25:57 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/28 15:27:51 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ char *signedcast(va_list *arg, fmt_list *fmt)
 		n = (long long int)va_arg(*arg, long long int);
 	else if (m == MOD_H)
 		n = (short int)va_arg(*arg, int);
-	else if (m == MOD_L)
+	else if (m == MOD_L || fmt->format == 'D')
 		n = (long int)va_arg(*arg, long int);
 	else if (m == MOD_J)
 		n = va_arg(*arg, intmax_t);
 	else if (m == MOD_Z)
 		n = va_arg(*arg, size_t);
 	else
-		n = (long long int)va_arg(*arg, long long int);
+		n = (int)va_arg(*arg, int);
 	if (n < 0)
 		fmt->sign = "-";
 	return(convert_int_toalpha((void *)&n, fmt));
