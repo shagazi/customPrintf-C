@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 13:46:23 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/28 16:10:40 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/28 16:16:21 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void printchar(fmt_list *fmt)
 			fmt->formatstr = ft_strappend(fmt->formatstr, fmt->spaces);
 			ft_putchar(fmt->formatchar);
 			ft_putstr(fmt->formatstr);
-			// fmt->byte_len += 1;
 		}
 		else
 			ft_putchar(fmt->formatchar);
@@ -36,10 +35,7 @@ void printchar(fmt_list *fmt)
 			// fmt->byte_len += 1;
 		}
 		else
-		{
-			printf("here %d\n", fmt->formatchar);
 			ft_putchar(fmt->formatchar);
-		}
 	}
 }
 
@@ -73,10 +69,5 @@ void charflag(fmt_list *fmt)
 		flagspace(fmt, 1);
 	if (fmt->width < 0)
 		flagspace(fmt, 1);
-	// if (fmt->format == 'c')
 		printchar(fmt);
-	// else
-	// 	{
-    //
-	// 	}
 }
