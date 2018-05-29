@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 23:45:47 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/28 16:14:30 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/28 17:19:03 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,7 @@ void  wchar_check(va_list *arg, fmt_list *fmt)
 	}
 	if (fmt->format == 'S')
 	{
-		p = (wchar_t)va_arg(*arg, wchar_t*);
-		fmt->formatstr = (void *)&p;
+		fmt->formatwstr = va_arg(*arg, wchar_t*);
 	}
 }
 

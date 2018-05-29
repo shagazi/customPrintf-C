@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/30 22:22:47 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/26 18:04:50 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/28 17:27:27 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,13 @@
 
 typedef struct f_list{
 	int width;
-	// int i;
-	// int k;
 	int presicion;
 	int presicionflag;
 	int modifier;
 	char format;
 	int byte_len;
 	char formatchar;
+	wchar_t *formatwstr;
 	char *basenumber;
 	void *formatstr;
 	char *sign;
@@ -109,6 +108,7 @@ void 	strflag(fmt_list *fmt);
 void 	charflag(fmt_list *fmt);
 void 	formatstr(fmt_list *fmt);
 void 	printchar(fmt_list *fmt);
+void 	printwidestr(fmt_list *fmt);
 
 void 	formatint(fmt_list *fmt);
 void 	intflag(fmt_list *fmt);

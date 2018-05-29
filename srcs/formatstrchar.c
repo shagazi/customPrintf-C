@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 13:46:23 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/28 16:16:21 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/28 17:20:51 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,24 @@ void printchar(fmt_list *fmt)
 			fmt->formatstr = ft_strappend(fmt->spaces, fmt->formatstr);
 			ft_putstr(fmt->formatstr);
 			ft_putchar(fmt->formatchar);
-			// fmt->byte_len += 1;
 		}
 		else
 			ft_putchar(fmt->formatchar);
 	}
 }
 
+void printwidestr(fmt_list *fmt)
+{
+	wchar_t *p;
+
+	p = fmt->formatwstr;
+	while (*p)
+	{
+		ft_putchar((char)*p);
+		p++;
+	}
+
+}
 void formatstr(fmt_list *fmt)
 {
 	char	*tmp;
@@ -48,6 +59,10 @@ void formatstr(fmt_list *fmt)
 		fmt->formatstr = ft_strappend(tmp, fmt->spaces);
 	else
 		fmt->formatstr = ft_strappend(fmt->spaces, tmp);
+	if (fmt->format == 'S')
+		printwidestr(fmt);
+	else
+		ft_putstr(fmt->formatstr);
 }
 
 void strflag(fmt_list *fmt)
