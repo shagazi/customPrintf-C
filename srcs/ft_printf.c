@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 20:29:12 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/28 17:27:02 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/28 18:17:21 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,26 @@ void getoutput(fmt_list *fmt, va_list *arg)
 	}
 }
 
-void set_args(int *i, int *k, fmt_list *fmt)
+int sizeofstring(char *format, int i, fmt_list *fmt, va_list *arg)
 {
-	*i = 0;
-	*k = 0;
-	fmt->byte_len = 0;
+	int k;
+
+	k = 0;
+	while (format[i])
+	{
+		if (format[i] == '%')
+		{
+			i += 1;
+			i += parse_percent(format + i, fmt, arg);
+			fmt->byte_len += bytelen(fmt);
+		}
+		else
+		{
+			write(1, format + i++, 1);
+			k++;
+		}
+	}
+	return (k);
 }
 
 int ft_printf(char *format, ...)
@@ -65,24 +80,21 @@ int ft_printf(char *format, ...)
 	fmt_list *fmt;
 
 	fmt = malloc(sizeof(fmt_list));
-	set_args(&i, &k, fmt);
+	i = 0;
+	k = 0;
+	fmt->byte_len = 0;
 	va_list arg;
 	va_start(arg, format);
-	while (format[i])
-	{
-		if (format[i] == '%')
-		{
-			i += 1;
-			i += parse_percent(format + i, fmt, &arg);
-			fmt->byte_len += bytelen(fmt);
-		}
-		else
-		{
-			write(1, format + i++, 1);
-			k += fmt->byte_len;
-		}
-	}
+	k = sizeofstring(format, i, fmt, &arg);
 	va_end(arg);
+	k += fmt->byte_len;
 	free(fmt);
 	return (k);
 }
+//
+// int main()
+// {
+//
+// 	ft_printf("%#O", 1);
+// 	return(0);
+// }
