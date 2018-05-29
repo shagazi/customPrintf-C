@@ -113,5 +113,7 @@ void 	printwidestr(fmt_list *fmt);
 void 	formatint(fmt_list *fmt);
 void 	intflag(fmt_list *fmt);
 void 	flagundef(fmt_list *fmt);
+void  castint(fmt_list *fmt, va_list *arg);
+
 
 #endif

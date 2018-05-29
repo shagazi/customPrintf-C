@@ -92,10 +92,10 @@ int ft_printf(char *format, ...)
 	return (k);
 }
 
-// int main()
-// {
-//  	ft_printf("%d%d%d\n", 42, 43, 44);
-// 	while (1)
-// 		;
-// 	return(0);
-// }
+int main()
+{
+ 	ft_printf("%d%d%d\n", 42, 43, 44);
+	while (1)
+		;
+	return(0);
+}

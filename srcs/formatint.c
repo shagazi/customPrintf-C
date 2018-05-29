@@ -48,6 +48,10 @@ void formatint(fmt_list *fmt)
 
 void intflag(fmt_list *fmt)
 {
+	// char *tmp;
+	//
+	// tmp = ft_strdup(fmt->formatstr);
+	// free(fmt->formatstr);
 	if (fmt->presicion != FMTLEN(fmt) && fmt->presicion >= 0)
 	{
 		presicionzero(fmt);
@@ -73,4 +77,19 @@ void intflag(fmt_list *fmt)
 	if (FLGSPACE(fmt) && (ft_strcmp(fmt->sign, "-")) &&
 		fmt->width < fmt->presicion && (!(ft_strchr("uU", fmt->format))))
 		flagspace(fmt, fmt->width - 1);
+}
+
+void castint(fmt_list *fmt, va_list *arg)
+{
+	char *tmp;
+
+	fmt->formatstr = (char *)signedcast(arg, fmt);
+	if (ft_strchr(fmt->formatstr, '-'))
+	{
+		tmp = ft_strdup(ft_strchr(fmt->formatstr, '-') + 1);
+		free(fmt->formatstr);
+		fmt->formatstr = ft_strdup(tmp);
+		free(tmp);
+		fmt->sign = "-";
+	}
 }
