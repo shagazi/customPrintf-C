@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 20:29:12 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/28 18:17:21 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/28 18:45:35 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,11 @@ int ft_printf(char *format, ...)
 	free(fmt);
 	return (k);
 }
-//
+
 // int main()
 // {
-//
-// 	ft_printf("%#O", 1);
+//  	ft_printf("%d%d%d\n", 42, 43, 44);
+// 	while (1)
+// 		;
 // 	return(0);
 // }

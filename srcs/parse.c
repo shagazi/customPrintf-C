@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/30 22:48:00 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/26 18:03:29 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/28 18:46:55 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,13 @@ int parse_flags(char *str, fmt_list *fmt)
 	char *tmp;
 
 	i = 0;
-	tmp = ft_strnew(0);
 	while(str[i] == ' ' || str[i] == '-' || str[i] == '+' || str[i] == '0'
 	|| str[i] == '#')
 	i++;
+	tmp = ft_strnew(i);
 	ft_strncpy(tmp, str, i);
 	fmt->flags = ft_removedup(tmp);
+	free(tmp);
 	return (i);
 }
 

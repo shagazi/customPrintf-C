@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 16:53:43 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/11 15:15:19 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/28 18:44:52 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char *ft_removedup(char *str)
 	char *newstr;
 
 	i = 0;
-	newstr = ft_strnew(0);
+	newstr = ft_strnew(ft_strlen(str));
 	newstr[0] = str[i];
 	while(str[i] != '\0')
 	{
