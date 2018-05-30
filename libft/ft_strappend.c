@@ -18,13 +18,14 @@ char *ft_strappend(char *s1, char *s2)
 	char *tmp;
 
 	i = 0;
-	tmp = s1;
+	if (s1)
+		tmp = ft_strdup(s1);
 	if (!s1)
 		return (s2);
 	else if (!s2)
 		return (s1);
 	else
 		s1 = ft_strjoin(s1, s2);
-	ft_strdel(&tmp);
+	free(tmp);
 	return (s1);
 }

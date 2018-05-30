@@ -19,12 +19,16 @@ void flagspace(fmt_list *fmt, int strlength)
 	i = fmt->width;
 	if (i < 0)
 		i *= -1;
-	if(ft_strchr(fmt->flags, '+') || (!(ft_strcmp(fmt->sign, "-"))))
-		i--;
-	while(i > strlength)
+	if (i > strlength)
 	{
-		fmt->spaces = ft_strappend(fmt->spaces, " ");
-		i--;
+		fmt->spaces = ft_strnew(i - strlength);
+		if(ft_strchr(fmt->flags, '+') || (!(ft_strcmp(fmt->sign, "-"))))
+			i--;
+		while(i > strlength)
+		{
+			fmt->spaces = ft_strappend(fmt->spaces, " ");
+			i--;
+		}
 	}
 }
 
@@ -33,18 +37,22 @@ void flagzero(fmt_list *fmt, int strlength)
 	int i;
 
 	i = fmt->width;
-	if(ft_strchr(fmt->flags, '+') || (!(ft_strcmp(fmt->sign, "-"))))
-		i--;
-	while(i > strlength)
+	if (i > strlength)
 	{
-		fmt->zeros = ft_strappend(fmt->zeros, "0");
-		i--;
+		fmt->zeros = ft_strnew(i - strlength);
+		if(ft_strchr(fmt->flags, '+') || (!(ft_strcmp(fmt->sign, "-"))))
+			i--;
+		while(i > strlength)
+		{
+			fmt->zeros = ft_strappend(fmt->zeros, "0");
+			i--;
+		}
 	}
 }
 
 void flaghex(fmt_list *fmt)
 {
-	if ((fmt->format == 'o') && (ft_strcmp(fmt->formatstr, "0")))
+	if (fmt->format == 'o') // && (!ft_strcmp(fmt->formatstr, "0")))
 		fmt->hex = "0";
 	if ((fmt->format == 'O') && (ft_strcmp(fmt->formatstr, "0")))
 		fmt->hex = "0";
@@ -97,6 +105,6 @@ void flagundef(fmt_list *fmt)
 		fmt->flags = ft_strdup(newstr);
 		free(newstr);
 	}
-	else if (ft_strlen(fmt->flags) == 0)
-		free(fmt->flags);
+	// else if (ft_strlen(fmt->flags) == 0)
+	// 	free(fmt->flags);
 }

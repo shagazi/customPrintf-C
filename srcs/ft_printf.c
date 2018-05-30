@@ -50,6 +50,7 @@ void getoutput(fmt_list *fmt, va_list *arg)
 		formatint(fmt);
 		ft_putstr(fmt->formatstr);
 		free(fmt->formatstr);
+		//free flags to clear up leak .. but check basic tests
 	}
 }
 
@@ -94,7 +95,8 @@ int ft_printf(char *format, ...)
 	return (k);
 }
 
-int main()
-{
-ft_printf("%ld", -2147483648);	return(0);
-}
+// int main()
+// {
+// ft_printf("@moulitest: %#.o %#.0o", 0, 0);
+// return(0);
+// }

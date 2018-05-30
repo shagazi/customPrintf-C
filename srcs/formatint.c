@@ -31,7 +31,8 @@ void formatint(fmt_list *fmt)
 	}
 	else
 	{
-		if (FLGSPACE(fmt) && ft_strcmp(fmt->sign, "-") && fmt->width == 0)
+		if (FLGSPACE(fmt) && ft_strcmp(fmt->sign, "-") && fmt->width == 0
+		&& (!(ft_strchr("uU", fmt->format))))
 			str = ft_strdup(" ");
 		if (SPACELEN(fmt) && fmt->width >= 0)
 			str = ft_strappend(str, fmt->spaces);
@@ -48,11 +49,7 @@ void formatint(fmt_list *fmt)
 
 void intflag(fmt_list *fmt)
 {
-	// char *tmp;
-	//
-	// tmp = ft_strdup(fmt->formatstr);
-	// free(fmt->formatstr);
-	if (fmt->presicion != FMTLEN(fmt) && fmt->presicion >= 0)
+	if (fmt->presicion != FMTLEN(fmt) && fmt->presicion > 0)
 	{
 		presicionzero(fmt);
 		fmt->formatstr = ft_strappend(fmt->zeros, fmt->formatstr);
@@ -63,17 +60,17 @@ void intflag(fmt_list *fmt)
 		fmt->formatstr = ft_strappend(fmt->zeros, fmt->formatstr);
 		fmt->zeros = NULL;
 	}
+	else if (FLGZERO(fmt))
+		flagzero(fmt, (FMTLEN(fmt)));
 	if((!(ft_strcmp(fmt->formatstr, "0"))) &&
 		(fmt->presicionflag == 1 && fmt->presicion == 0))
 		ft_bzero(fmt->formatstr, FMTLEN(fmt));
- 	if (FLGNEG(fmt))
+	if (FLGNEG(fmt))
 		flagspace(fmt, (FMTLEN(fmt)));
-	else if (!FLGZERO(fmt) && fmt->width > (FMTLEN(fmt) + SPACELEN(fmt)))
-		flagspace(fmt, (FMTLEN(fmt) + SPACELEN(fmt)));
-	if (FLGZERO(fmt) && fmt->presicion == 0)
-		flagzero(fmt, (FMTLEN(fmt)));
-	else if (fmt->width != (FMTLEN(fmt) + SPACELEN(fmt)) && fmt->width != 0)
-		flagspace(fmt, (FMTLEN(fmt) + SPACELEN(fmt)));
+	else if (fmt->width > (FMTLEN(fmt) + ZEROLEN(fmt)) && fmt->presicion == 0)
+		flagspace(fmt, FMTLEN(fmt) + ZEROLEN(fmt));
+	else if (fmt->width > FMTLEN(fmt) && fmt->presicion != 0)
+		flagspace(fmt, FMTLEN(fmt));
 	if (FLGSPACE(fmt) && (ft_strcmp(fmt->sign, "-")) &&
 		fmt->width < fmt->presicion && (!(ft_strchr("uU", fmt->format))))
 		flagspace(fmt, fmt->width - 1);
@@ -83,7 +80,8 @@ void castint(fmt_list *fmt, va_list *arg)
 {
 	char *tmp;
 
-	fmt->formatstr = (char *)signedcast(arg, fmt);
+	fmt->formatstr = ft_strdup((char *)signedcast(arg, fmt));
+	//might need to clear up leak here
 	if (ft_strchr(fmt->formatstr, '-'))
 	{
 		tmp = ft_strdup(ft_strchr(fmt->formatstr, '-') + 1);
