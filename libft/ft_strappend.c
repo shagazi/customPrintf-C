@@ -15,15 +15,16 @@
 char *ft_strappend(char *s1, char *s2)
 {
 	int i;
-	char *newstr;
+	char *tmp;
 
 	i = 0;
+	tmp = s1;
 	if (!s1)
-		newstr = ft_strdup(s2);
+		return (s2);
 	else if (!s2)
-		newstr = s1;
+		return (s1);
 	else
-		newstr = ft_strjoin(s1, s2);
-	// newstr[ft_strlen(newstr)] = '\0';
-	return (newstr);
+		s1 = ft_strjoin(s1, s2);
+	ft_strdel(&tmp);
+	return (s1);
 }

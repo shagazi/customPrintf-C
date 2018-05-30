@@ -90,20 +90,10 @@ void char_check(fmt_list *fmt, va_list *arg)
 void formatcheck(va_list *arg, fmt_list *fmt)
 {
 	char f;
-	char *tmp;
 
 	f = fmt->format;
 	if (ft_strchr("Ddi", f))
-	{
-		fmt->formatstr = (char *)signedcast(arg, fmt);
-		if (ft_strchr(fmt->formatstr, '-'))
-		{
-			tmp = ft_strdup(ft_strchr(fmt->formatstr, '-') + 1);
-			free(fmt->formatstr);
-			fmt->formatstr = tmp;
-			fmt->sign = "-";
-		}
-	}
+		castint(fmt, arg);
 	if (ft_strchr("oOuUxX", f))
 		fmt->formatstr = (char *)unsignedcast(arg, fmt);
 	if (ft_strchr("cs", f))

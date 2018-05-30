@@ -73,24 +73,30 @@ void flagundef(fmt_list *fmt)
 	char *flagstr;
 
 	i = 0;
-	newstr = ft_strnew(0);
-	flagstr = fmt->flags;
-	while (flagstr[i] != '\0')
+	if (ft_strlen(fmt->flags) > 1)
 	{
-		if (flagstr[i] == ' ' && ft_strchr(flagstr, ' ')
-			&& ft_strchr(flagstr, '+'))
+		newstr = ft_strnew(0);
+		flagstr = ft_strdup(fmt->flags);
+		free(fmt->flags);
+		while (flagstr[i] != '\0')
+		{
+			if (flagstr[i] == ' ' && ft_strchr(flagstr, ' ')
+				&& ft_strchr(flagstr, '+'))
+				i++;
+			if (flagstr[i] == '0' && ft_strchr(flagstr, '0')
+				&& ft_strchr(flagstr, '-'))
+				i++;
+			if (flagstr[i] == ' ' && (fmt->width > 0 || (!FLGMINUS(fmt))
+				|| fmt->format == 'u') && (!ft_strchr("di", fmt->format)))
+				i++;
+			newstr = ft_strncat(newstr, &flagstr[i], 1);
 			i++;
-		if (flagstr[i] == '0' && ft_strchr(flagstr, '0')
-			&& ft_strchr(flagstr, '-'))
-			i++;
-		if (flagstr[i] == ' ' && (fmt->width > 0 || (!FLGMINUS(fmt))
-			|| fmt->format == 'u') && (!ft_strchr("di", fmt->format)))
-			i++;
-		newstr = ft_strncat(newstr, &flagstr[i], 1);
-		i++;
+		}
+		free(flagstr);
+		newstr[ft_strlen(newstr)] = '\0';
+		fmt->flags = ft_strdup(newstr);
+		free(newstr);
 	}
-	i = ft_strlen(newstr);
-	newstr[i] = '\0';
-	fmt->flags = ft_strdup(newstr);
-	free(newstr);
+	else if (ft_strlen(fmt->flags) == 0)
+		free(fmt->flags);
 }

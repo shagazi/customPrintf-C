@@ -90,6 +90,6 @@ void castint(fmt_list *fmt, va_list *arg)
 		free(fmt->formatstr);
 		fmt->formatstr = ft_strdup(tmp);
 		free(tmp);
-		fmt->sign = "-";
+		fmt->sign = ft_strdup("-");
 	}
 }

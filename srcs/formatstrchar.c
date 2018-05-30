@@ -21,6 +21,7 @@ void printchar(fmt_list *fmt)
 			fmt->formatstr = ft_strappend(fmt->formatstr, fmt->spaces);
 			ft_putchar(fmt->formatchar);
 			ft_putstr(fmt->formatstr);
+			free(fmt->formatstr);
 		}
 		else
 			ft_putchar(fmt->formatchar);
@@ -31,6 +32,7 @@ void printchar(fmt_list *fmt)
 		{
 			fmt->formatstr = ft_strappend(fmt->spaces, fmt->formatstr);
 			ft_putstr(fmt->formatstr);
+			free(fmt->formatstr);
 			ft_putchar(fmt->formatchar);
 		}
 		else

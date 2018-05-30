@@ -35,6 +35,7 @@ void getoutput(fmt_list *fmt, va_list *arg)
 		hexflags(fmt);
 		formathex(fmt);
 		ft_putstr(fmt->formatstr);
+		free(fmt->formatstr);
 	}
 	if (ft_strchr("sS", fmt->format))
 	{
@@ -48,6 +49,7 @@ void getoutput(fmt_list *fmt, va_list *arg)
 		intflag(fmt);
 		formatint(fmt);
 		ft_putstr(fmt->formatstr);
+		free(fmt->formatstr);
 	}
 }
 
@@ -94,8 +96,5 @@ int ft_printf(char *format, ...)
 
 int main()
 {
- 	ft_printf("%d%d%d\n", 42, 43, 44);
-	while (1)
-		;
-	return(0);
+ft_printf("%ld", -2147483648);	return(0);
 }
