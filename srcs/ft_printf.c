@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 20:29:12 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/30 23:09:49 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/30 23:25:16 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ int sizeofstring(char *format, int i, fmt_list *fmt, va_list *arg)
 		}
 		else
 		{
-			write(1, format + i++, 1);
+			write(1, format + i, 1);
+			i++;
 			k++;
 		}
 	}
@@ -92,3 +93,9 @@ int ft_printf(char *format, ...)
 	free(fmt);
 	return (k);
 }
+//
+// int main()
+// {
+// 	ft_printf("%d%d%d", 42, 43, 44);
+// 	return (0);
+// }
