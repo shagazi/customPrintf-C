@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/11 18:15:06 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/28 18:06:01 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/30 23:07:13 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,63 +15,62 @@
 void flagspace(fmt_list *fmt, int strlength)
 {
 	int i;
+	int s;
+	char *spaces;
 
 	i = fmt->width;
+	s = 0;
 	if (i < 0)
 		i *= -1;
 	if (i > strlength)
 	{
-		fmt->spaces = ft_strnew(i - strlength);
-		if(ft_strchr(fmt->flags, '+') || (!(ft_strcmp(fmt->sign, "-"))))
+		spaces = ft_strnew(i - strlength);
+		if (ft_strchr(fmt->flags, '+') || (!(ft_strcmp(fmt->sign, "-"))))
 			i--;
-		while(i > strlength)
+		while (i > strlength)
 		{
-			fmt->spaces = ft_strappend(fmt->spaces, " ");
+			spaces[s] = ' ';
+			s++;
 			i--;
 		}
+		fmt->spaces = ft_strappend(fmt->spaces, spaces);
 	}
 }
 
 void flagzero(fmt_list *fmt, int strlength)
 {
 	int i;
+	int z;
+	char *zeros;
 
 	i = fmt->width;
+	z = 0;
 	if (i > strlength)
 	{
-		fmt->zeros = ft_strnew(i - strlength);
-		if(ft_strchr(fmt->flags, '+') || (!(ft_strcmp(fmt->sign, "-"))))
+		zeros = ft_strnew(i - strlength);
+		if (ft_strchr(fmt->flags, '+') || (!(ft_strcmp(fmt->sign, "-"))))
 			i--;
-		while(i > strlength)
+		while (i > strlength)
 		{
-			fmt->zeros = ft_strappend(fmt->zeros, "0");
+			zeros[z] = '0';
+			z++;
 			i--;
 		}
+		fmt->zeros = ft_strappend(fmt->zeros, zeros);
 	}
 }
 
 void flaghex(fmt_list *fmt)
 {
 	if (fmt->format == 'o') // && (!ft_strcmp(fmt->formatstr, "0")))
-		fmt->hex = "0";
+		fmt->hex = ft_strdup("0");
 	if ((fmt->format == 'O') && (ft_strcmp(fmt->formatstr, "0")))
-		fmt->hex = "0";
-	if((fmt->format == 'x' && ft_strcmp(fmt->formatstr, "0")) ||
+		fmt->hex = ft_strdup("0");
+	if ((fmt->format == 'x' && ft_strcmp(fmt->formatstr, "0")) ||
 		fmt->format == 'p')
-		fmt->hex = "0x";
-	if(fmt->format == 'X' && ft_strcmp(fmt->formatstr, "0"))
-		fmt->hex = "0X";
-}
-
-void flagplus(fmt_list *fmt)
-{
-	char f;
-
-	f = fmt->format;
-	if (ft_strchr("di", f) && ft_strchr(fmt->flags, '+') &&
-	(!(ft_strchr(fmt->formatstr, '-'))))
-		fmt->sign = "+";
-
+		fmt->hex = ft_strdup("0x");
+	if (fmt->format == 'X' && ft_strcmp(fmt->formatstr, "0"))
+		fmt->hex = ft_strdup("0X");
 }
 
 void flagundef(fmt_list *fmt)
@@ -105,6 +104,4 @@ void flagundef(fmt_list *fmt)
 		fmt->flags = ft_strdup(newstr);
 		free(newstr);
 	}
-	// else if (ft_strlen(fmt->flags) == 0)
-	// 	free(fmt->flags);
 }

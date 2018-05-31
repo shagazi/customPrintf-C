@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/30 22:22:47 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/28 17:27:27 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/30 19:09:32 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ typedef struct f_list{
 	int presicion;
 	int presicionflag;
 	int modifier;
-	char format;
 	int byte_len;
+	char format;
 	char formatchar;
 	wchar_t *formatwstr;
 	char *basenumber;
@@ -73,6 +73,7 @@ void 	getoutputhelp(fmt_list *fmt);
 void 	getoutput(fmt_list *fmt, va_list *arg);
 void 	printoutput(fmt_list *fmt);
 int 	ft_printf(char *format, ...);
+void 	freefmt(fmt_list *fmt);
 
 void 	callflags(fmt_list *fmt, int strlength);
 void 	flagspace(fmt_list *fmt, int strlength);
@@ -113,7 +114,7 @@ void 	printwidestr(fmt_list *fmt);
 void 	formatint(fmt_list *fmt);
 void 	intflag(fmt_list *fmt);
 void 	flagundef(fmt_list *fmt);
-void  castint(fmt_list *fmt, va_list *arg);
+void  	castint(fmt_list *fmt, va_list *arg);
 
 
 #endif

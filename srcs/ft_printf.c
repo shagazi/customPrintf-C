@@ -6,12 +6,11 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 20:29:12 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/28 18:45:35 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/30 23:09:49 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-#include <limits.h>
 
 void formatadjust(fmt_list *fmt)
 {
@@ -35,7 +34,6 @@ void getoutput(fmt_list *fmt, va_list *arg)
 		hexflags(fmt);
 		formathex(fmt);
 		ft_putstr(fmt->formatstr);
-		free(fmt->formatstr);
 	}
 	if (ft_strchr("sS", fmt->format))
 	{
@@ -49,8 +47,6 @@ void getoutput(fmt_list *fmt, va_list *arg)
 		intflag(fmt);
 		formatint(fmt);
 		ft_putstr(fmt->formatstr);
-		free(fmt->formatstr);
-		//free flags to clear up leak .. but check basic tests
 	}
 }
 
@@ -66,6 +62,8 @@ int sizeofstring(char *format, int i, fmt_list *fmt, va_list *arg)
 			i += 1;
 			i += parse_percent(format + i, fmt, arg);
 			fmt->byte_len += bytelen(fmt);
+			if (fmt->formatstr)
+				free(fmt->formatstr);
 		}
 		else
 		{
@@ -94,9 +92,3 @@ int ft_printf(char *format, ...)
 	free(fmt);
 	return (k);
 }
-
-// int main()
-// {
-// ft_printf("@moulitest: %#.o %#.0o", 0, 0);
-// return(0);
-// }

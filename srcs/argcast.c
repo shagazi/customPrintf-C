@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 23:45:47 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/28 17:19:03 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/30 22:42:13 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ char *signedcast(va_list *arg, fmt_list *fmt)
 		n = va_arg(*arg, size_t);
 	else
 		n = (int)va_arg(*arg, int);
-	if (n < 0)
-		fmt->sign = "-";
 	return(convert_int_toalpha((void *)&n, fmt));
 }
 

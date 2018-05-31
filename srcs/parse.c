@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/30 22:48:00 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/28 18:46:55 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/30 22:41:52 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ int parse_precision(char *str, fmt_list *fmt, va_list *arg)
 	int i;
 
 	i = 0;
-	if(str[i] == '.')
+	if (str[i] == '.')
 	{
 		i++;
-		while(str[i] >= '0' && str[i] <= '9')
+		while (str[i] >= '0' && str[i] <= '9')
 			i++;
-		if(str[i] == '*')
+		if (str[i] == '*')
 		{
 			i++;
 			fmt->presicion = va_arg(*arg, int);
@@ -87,8 +87,8 @@ int parse_flags(char *str, fmt_list *fmt)
 	char *tmp;
 
 	i = 0;
-	while(str[i] == ' ' || str[i] == '-' || str[i] == '+' || str[i] == '0'
-	|| str[i] == '#')
+	while (str[i] == ' ' || str[i] == '-' || str[i] == '+' || str[i] == '0'
+		|| str[i] == '#')
 	i++;
 	tmp = ft_strnew(i);
 	ft_strncpy(tmp, str, i);
@@ -104,15 +104,16 @@ int parse_percent(char *str, fmt_list *fmt, va_list *arg)
 	i = 0;
 	fmt->modifier = 0;
 	fmt->presicion = 0;
-	fmt->basenumber = "0123456789";
 	fmt->width = 0;
+	fmt->formatchar = 0;
+	fmt->formatwstr = NULL;
+	fmt->basenumber = "0123456789";
 	fmt->formatstr = NULL;
 	fmt->sign = "+";
 	fmt->flags = NULL;
+	fmt->hex = NULL;
 	fmt->zeros = NULL;
 	fmt->spaces = NULL;
-	fmt->hex = NULL;
-	fmt->formatchar = 0;
 	i += parse_flags(str, fmt);
 	i += parse_width(str + i, fmt, arg);
 	i += parse_precision(str + i, fmt, arg);
@@ -120,5 +121,7 @@ int parse_percent(char *str, fmt_list *fmt, va_list *arg)
 	fmt->format = str[i];
 	i++;
 	getoutput(fmt, arg);
+	if (fmt->flags)
+		free(fmt->flags);
 	return (i);
 }

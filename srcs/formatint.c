@@ -6,38 +6,41 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 18:20:38 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/26 19:39:44 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/30 23:08:50 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
+void formatnegint(fmt_list *fmt, char *str)
+{
+	if (FLGSPACE(fmt))
+		str[0] = ' ';
+	if (FLGPLUS(fmt) || (!(ft_strcmp(fmt->sign, "-"))))
+		str = ft_strappend(str, fmt->sign);
+	if (ZEROLEN(fmt) && fmt->presicion != FMTLEN(fmt))
+		str = ft_strappend(str, fmt->zeros);
+	fmt->formatstr = ft_strappend(str, fmt->formatstr);
+	if (SPACELEN(fmt))
+		fmt->formatstr = ft_strappend(fmt->formatstr, fmt->spaces);
+}
+
 void formatint(fmt_list *fmt)
 {
 	char *str;
 
-	str = NULL;
+	str = ft_strnew(1);
 	if (FLGNEG(fmt))
-	{
-		if (FLGSPACE(fmt)) // && (!(FLGPLUS(fmt))))
-			str = ft_strdup(" ");
-		if (FLGPLUS(fmt) || (!(ft_strcmp(fmt->sign, "-"))))
-			str = ft_strdup(fmt->sign);
-		if (ZEROLEN(fmt) && fmt->presicion != FMTLEN(fmt))
-			str = ft_strappend(str, fmt->zeros);
-		fmt->formatstr = ft_strappend(str, fmt->formatstr);
-		if (SPACELEN(fmt))
-			fmt->formatstr = ft_strappend(fmt->formatstr, fmt->spaces);
-	}
+		formatnegint(fmt, str);
 	else
 	{
 		if (FLGSPACE(fmt) && ft_strcmp(fmt->sign, "-") && fmt->width == 0
-		&& (!(ft_strchr("uU", fmt->format))))
-			str = ft_strdup(" ");
+			&& (!(ft_strchr("uU", fmt->format))))
+			str[0] = ' ';
 		if (SPACELEN(fmt) && fmt->width >= 0)
 			str = ft_strappend(str, fmt->spaces);
 		if ((FLGPLUS(fmt) || (!(ft_strcmp(fmt->sign, "-")))) &&
-		(!(ft_strchr("uU", fmt->format))))
+			(!(ft_strchr("uU", fmt->format))))
 			str = ft_strappend(str, fmt->sign);
 		if (ZEROLEN(fmt) && fmt->presicion != FMTLEN(fmt))
 			str = ft_strappend(str, fmt->zeros);
@@ -80,8 +83,7 @@ void castint(fmt_list *fmt, va_list *arg)
 {
 	char *tmp;
 
-	fmt->formatstr = ft_strdup((char *)signedcast(arg, fmt));
-	//might need to clear up leak here
+	fmt->formatstr = (char *)signedcast(arg, fmt);
 	if (ft_strchr(fmt->formatstr, '-'))
 	{
 		tmp = ft_strdup(ft_strchr(fmt->formatstr, '-') + 1);
@@ -89,5 +91,9 @@ void castint(fmt_list *fmt, va_list *arg)
 		fmt->formatstr = ft_strdup(tmp);
 		free(tmp);
 		fmt->sign = ft_strdup("-");
+	}
+	else if (ft_strchr(fmt->flags, '+'))
+	{
+		fmt->sign = ft_strdup("+");
 	}
 }

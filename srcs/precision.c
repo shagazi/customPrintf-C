@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 20:31:00 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/24 15:53:17 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/30 23:10:13 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,21 @@ void presicionstring(fmt_list *fmt, int i)
 void presicionzero(fmt_list *fmt)
 {
 	int i;
+	int j;
+	char *zero;
 
+	j = 0;
 	i = fmt->presicion;
-	while (i > FMTLEN(fmt))
+	if (i > FMTLEN(fmt))
 	{
-		fmt->zeros = ft_strappend(fmt->zeros, "0");
-		i--;
+		zero = ft_strnew(i - FMTLEN(fmt));
+		while (i > FMTLEN(fmt))
+		{
+			zero[j] = '0';
+			j++;
+			i--;
+		}
+		fmt->zeros = ft_strappend(fmt->zeros, zero);
 	}
 }
 
@@ -43,32 +52,43 @@ void negpresicionzero(fmt_list *fmt)
 {
 	int i;
 	int j;
+	int k;
+	char *zero;
 
 	i = fmt->presicion;
 	j = fmt->width;
-	while (j > FMTLEN(fmt))
+	k = 0;
+	if (j > FMTLEN(fmt))
 	{
-		fmt->zeros = ft_strappend(fmt->zeros, "0");
-		j--;
+		zero = ft_strnew(j - FMTLEN(fmt));
+		while (j > FMTLEN(fmt))
+		{
+			zero[j] = '0';
+			k++;
+			j--;
+		}
+		fmt->zeros = ft_strappend(fmt->zeros, zero);
 	}
 }
 
 void intpresicion(fmt_list *fmt)
 {
-	char *tmp;
+	char *zero;
 	int j;
 
 	j = 0;
-	tmp = malloc(sizeof(fmt->presicion));
 	if (ft_strchr("dDi",fmt->format))
 	{
-		while (j < (fmt->presicion - (int)ft_strlen(fmt->formatstr)))
+		if (j < (fmt->presicion - (int)ft_strlen(fmt->formatstr)))
 		{
-			tmp[j] = '0';
-			j++;
+			zero = ft_strnew(fmt->presicion - FMTLEN(fmt));
+			while (j < (fmt->presicion - (int)ft_strlen(fmt->formatstr)))
+			{
+				zero[j] = '0';
+				j++;
+			}
+			fmt->formatstr = ft_strappend(zero, fmt->formatstr);
 		}
-		fmt->formatstr = ft_strjoin(tmp, fmt->formatstr);
-		free(tmp);
 	}
 	if (ft_strchr("oOuUxX",fmt->format))
 	{

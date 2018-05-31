@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 15:11:36 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/25 15:57:00 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/30 16:50:39 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,25 @@ char *ft_strappend(char *s1, char *s2)
 {
 	int i;
 	char *tmp;
+	char *tmptwo;
 
 	i = 0;
-	if (s1)
-		tmp = ft_strdup(s1);
 	if (!s1)
-		return (s2);
+	{
+		tmptwo = s2;
+		s1 = ft_strdup(s2);
+		free(s2);
+		return (s1);
+	}
 	else if (!s2)
 		return (s1);
 	else
+	{
+		tmp = s1;
+		tmptwo = s2;
 		s1 = ft_strjoin(s1, s2);
-	free(tmp);
+		free(tmptwo);
+		free(tmp);
+	}
 	return (s1);
 }

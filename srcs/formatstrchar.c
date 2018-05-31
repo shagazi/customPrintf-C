@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 13:46:23 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/28 18:30:29 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/30 23:09:40 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void printchar(fmt_list *fmt)
 			fmt->formatstr = ft_strappend(fmt->formatstr, fmt->spaces);
 			ft_putchar(fmt->formatchar);
 			ft_putstr(fmt->formatstr);
-			free(fmt->formatstr);
 		}
 		else
 			ft_putchar(fmt->formatchar);
@@ -32,7 +31,6 @@ void printchar(fmt_list *fmt)
 		{
 			fmt->formatstr = ft_strappend(fmt->spaces, fmt->formatstr);
 			ft_putstr(fmt->formatstr);
-			free(fmt->formatstr);
 			ft_putchar(fmt->formatchar);
 		}
 		else
@@ -52,6 +50,7 @@ void printwidestr(fmt_list *fmt)
 	}
 
 }
+
 void formatstr(fmt_list *fmt)
 {
 	char	*tmp;
@@ -73,7 +72,7 @@ void strflag(fmt_list *fmt)
 		presicionstring(fmt, fmt->presicion);
 	if (fmt->width > FMTLEN(fmt))
 		flagspace(fmt, FMTLEN(fmt));
-	if (fmt->formatstr == NULL && ft_strchr("sS", fmt->format))
+	if (fmt->formatstr == NULL && ft_strchr("s", fmt->format))
 	{
 		ft_bzero(fmt->formatstr, FMTLEN(fmt));
 		fmt->formatstr = ft_strdup("(null)");
@@ -86,5 +85,5 @@ void charflag(fmt_list *fmt)
 		flagspace(fmt, 1);
 	if (fmt->width < 0)
 		flagspace(fmt, 1);
-		printchar(fmt);
+	printchar(fmt);
 }
