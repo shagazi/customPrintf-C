@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/11 18:15:06 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/31 22:51:17 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/31 22:57:36 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,8 @@ void flagundef(fmt_list *fmt)
 		while (flagstr[i] != '\0')
 		{
 			if (!((flagstr[i] == ' ' && ft_strchr(flagstr, ' ')
-				&& ft_strchr(flagstr, '+')) ||
-				(flagstr[i] == '0' && ft_strchr(flagstr, '0') &&
-				ft_strchr(flagstr, '-')) ||
+				&& ft_strchr(flagstr, '+')) || (flagstr[i] == '0' &&
+				ft_strchr(flagstr, '0') && ft_strchr(flagstr, '-')) ||
 				(flagstr[i] == ' ' && (fmt->width > 0 || (!FLGMINUS(fmt))
 				|| ft_strchr("uUoOxXp", fmt->format)) &&
 				(!ft_strchr("di", fmt->format)))))
@@ -103,6 +102,5 @@ void flagundef(fmt_list *fmt)
 		}
 		free(flagstr);
 		fmt->flags = newstr;
-		// free(newstr);
 	}
 }

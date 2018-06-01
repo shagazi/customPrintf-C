@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 20:31:00 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/31 15:15:56 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/31 23:37:14 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,19 @@ void presicionzero(fmt_list *fmt)
 {
 	int i;
 	int j;
+	int strlength;
 	char *zero;
 
 	j = 0;
 	i = fmt->presicion;
-	if (i > FMTLEN(fmt))
+	if (fmt->format == 'o')
+		strlength = FMTLEN(fmt) + HEXLEN(fmt);
+	else
+		strlength = FMTLEN(fmt);
+	if (i > strlength)
 	{
-		zero = ft_strnew(i - FMTLEN(fmt));
-		while (i > FMTLEN(fmt))
+		zero = ft_strnew(i - strlength);
+		while (i > strlength)
 		{
 			zero[j] = '0';
 			j++;
