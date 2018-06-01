@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/11 18:15:06 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/31 21:31:18 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/31 22:51:17 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,15 @@ void flaghex(fmt_list *fmt)
 void flagundef(fmt_list *fmt)
 {
 	int i;
+	int j;
 	char *newstr;
 	char *flagstr;
 
 	i = 0;
+	j = 0;
 	if (ft_strlen(fmt->flags) >= 1)
 	{
-		newstr = ft_strnew(0);
+		newstr = ft_strnew(5);
 		flagstr = ft_strdup(fmt->flags);
 		free(fmt->flags);
 		while (flagstr[i] != '\0')
@@ -96,12 +98,11 @@ void flagundef(fmt_list *fmt)
 				(flagstr[i] == ' ' && (fmt->width > 0 || (!FLGMINUS(fmt))
 				|| ft_strchr("uUoOxXp", fmt->format)) &&
 				(!ft_strchr("di", fmt->format)))))
-				newstr = ft_strncat(newstr, &flagstr[i], 1);
+				newstr[j++] = flagstr[i];
 			i++;
 		}
 		free(flagstr);
-		newstr[ft_strlen(newstr)] = '\0';
-		fmt->flags = ft_strdup(newstr);
-		free(newstr);
+		fmt->flags = newstr;
+		// free(newstr);
 	}
 }
