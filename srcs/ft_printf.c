@@ -6,12 +6,12 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 20:29:12 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/31 21:52:14 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/31 22:23:46 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-#include <limits.h>
+// #include <limits.h>
 
 void fmtassign(fmt_list *fmt)
 {
@@ -112,32 +112,39 @@ int ft_printf(char *format, ...)
 	return (k);
 }
 
-
+//
 // int main()
 // {
-// // // // // //
-// 	// int x = ft_printf("{%*c}", -15, 0);
-// 	// int y = printf("{%*c}", -15, 0);
-// 	int x = ft_printf("%hd%hd\n", (short int)0, (short int)42);
-// 	int y = printf("%hd%hd\n", (short int)0, (short int)42);
-//
-// // // // // // //
-// // 	ft_printf("%#.o, %#.0o\n", 0, 0);
-// // 	printf("%#.o, %#.0o\n", 0, 0);
-// // 	ft_printf("%.o, %.0o\n", 0, 0);
-// // 	printf("%.o, %.0o\n", 0, 0);
-// // 	ft_printf("%.o, %.0O\n", 0, 0);
-// // 	printf("%.o, %.0O\n", 0, 0);
+// // // // // // // //
+// // // 	// int x = ft_printf("{%*c}", -15, 0);
+// // // 	// int y = printf("{%*c}", -15, 0);
+// 	int x = ft_printf("%hd %hd\n", (short int)0, (short int)42);
+// 	int y = printf("%hd %hd\n", (short int)0, (short int)42);
+// // 	ft_printf("%s", "pouet");
+// // 	ft_printf(" pouet %s !!\n", "camembert");
+// // 	ft_printf("%s !\n", "Ceci n'est pas un \0 exercice !");
+// // 	ft_printf("%s!\n", "Ceci n'est toujours pas un exercice !");
 // //
-// // 	int x = ft_printf("%#o\n", 0);
-// // 	int y = printf("%#o\n", 0);
-// // // // 	// // 	int x = ft_printf("{%05.s}\n", 0);
-// // // // // // 	int y = printf("{%07.s}\n", NULL);
-// // // // // 	// int x = ft_printf("%#.3o\n", 1);
-// // // // // 	// int y = printf("%#.3o\n", 1);
-// // // // // 	int x = ft_printf("{%05.S}\n", L"42 c est cool");
-// // // // // 	int y = printf("{%05.S}\n", L"42 c est cool");
-// printf("%d\n", x);
-// 	printf("%d\n", y);
+// // 	printf(" pouet %s !!\n", "camembert");
+// // 	printf("%s !\n", "Ceci n'est pas un \0 exercice !");
+// // 	printf("%s!\n", "Ceci n'est toujours pas un exercice !");
+// //
+// // // // 	ft_printf("%#.o, %#.0o\n", 0, 0);
+// // // // 	printf("%#.o, %#.0o\n", 0, 0);
+// // // // 	ft_printf("%.o, %.0o\n", 0, 0);
+// // // // 	printf("%.o, %.0o\n", 0, 0);
+// // // // 	ft_printf("%.o, %.0O\n", 0, 0);
+// // // // 	printf("%.o, %.0O\n", 0, 0);
+// // // //
+// // // // 	int x = ft_printf("%#o\n", 0);
+// // // // 	int y = printf("%#o\n", 0);
+// // // // // // 	// // 	int x = ft_printf("{%05.s}\n", 0);
+// // // // // // // // 	int y = printf("{%07.s}\n", NULL);
+// // // // // // // 	// int x = ft_printf("%#.3o\n", 1);
+// // // // // // // 	// int y = printf("%#.3o\n", 1);
+// // // // // // // 	int x = ft_printf("{%05.S}\n", L"42 c est cool");
+// // // // // // // 	int y = printf("{%05.S}\n", L"42 c est cool");
+// // // printf("%d\n", x);
+// // 	// printf("%d\n", y);
 // 	return (0);
 // }
