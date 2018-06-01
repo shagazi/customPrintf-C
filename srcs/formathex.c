@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 12:29:08 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/30 23:07:23 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/31 21:44:51 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ void hexflags(fmt_list *fmt)
 	if (FLGHASH(fmt) || fmt->format == 'p')
 		flaghex(fmt);
 	if((!(ft_strcmp(fmt->formatstr, "0"))) &&
-	(fmt->presicionflag == 1 && fmt->presicion == 0))
+		fmt->presicionflag == 1 && fmt->presicion == 0 && (fmt->format != 'o'
+		|| (!FLGHASH(fmt))))
 		ft_bzero(fmt->formatstr, FMTLEN(fmt));
 	if (fmt->presicion != FMTLEN(fmt))
 	{

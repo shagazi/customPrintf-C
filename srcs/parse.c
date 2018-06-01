@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/30 22:48:00 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/30 22:41:52 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/31 15:49:28 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int parse_width(char *str, fmt_list *fmt, va_list *arg)
 	}
 	else
 		fmt->width = ft_atoi(str);
+	fmt->negwidth = fmt->width;
 	return (i);
 }
 
@@ -102,23 +103,14 @@ int parse_percent(char *str, fmt_list *fmt, va_list *arg)
 	int i;
 
 	i = 0;
-	fmt->modifier = 0;
-	fmt->presicion = 0;
-	fmt->width = 0;
-	fmt->formatchar = 0;
-	fmt->formatwstr = NULL;
-	fmt->basenumber = "0123456789";
-	fmt->formatstr = NULL;
-	fmt->sign = "+";
-	fmt->flags = NULL;
-	fmt->hex = NULL;
-	fmt->zeros = NULL;
-	fmt->spaces = NULL;
+	fmtassign(fmt);
 	i += parse_flags(str, fmt);
 	i += parse_width(str + i, fmt, arg);
 	i += parse_precision(str + i, fmt, arg);
 	i += parse_modifier(str + i, fmt);
 	fmt->format = str[i];
+	if (fmt->format == '\0')
+		return (0);
 	i++;
 	getoutput(fmt, arg);
 	if (fmt->flags)

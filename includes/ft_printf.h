@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/30 22:22:47 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/30 19:09:32 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/31 15:47:07 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 
 typedef struct f_list{
 	int width;
+	int negwidth;
 	int presicion;
 	int presicionflag;
 	int modifier;
@@ -70,10 +71,10 @@ typedef struct f_list{
 # define FLGMINUS(fmt)	ft_strcmp(fmt->sign, "-")
 
 void 	getoutputhelp(fmt_list *fmt);
-void 	getoutput(fmt_list *fmt, va_list *arg);
+void	getoutput(fmt_list *fmt, va_list *arg);
 void 	printoutput(fmt_list *fmt);
 int 	ft_printf(char *format, ...);
-void 	freefmt(fmt_list *fmt);
+void 	fmtassign(fmt_list *fmt);
 
 void 	callflags(fmt_list *fmt, int strlength);
 void 	flagspace(fmt_list *fmt, int strlength);

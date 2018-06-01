@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 13:46:23 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/30 23:09:40 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/31 21:06:52 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,10 @@ void printchar(fmt_list *fmt)
 	}
 	else
 	{
-		if (fmt->spaces != NULL)
+		if (fmt->spaces != NULL || fmt->zeros != NULL)
 		{
 			fmt->formatstr = ft_strappend(fmt->spaces, fmt->formatstr);
+			fmt->formatstr = ft_strappend(fmt->zeros, fmt->formatstr);
 			ft_putstr(fmt->formatstr);
 			ft_putchar(fmt->formatchar);
 		}
@@ -41,25 +42,37 @@ void printchar(fmt_list *fmt)
 void printwidestr(fmt_list *fmt)
 {
 	wchar_t *p;
+	int i;
 
 	p = fmt->formatwstr;
-	while (*p)
+	i = 0;
+	if (fmt->formatwstr == NULL)
 	{
-		ft_putchar((char)*p);
-		p++;
+		ft_putstr("(null)");
+		fmt->byte_len += 6;
 	}
-
+	else
+		while (*p)
+		{
+			ft_putchar((char)*p);
+			p++;
+			i++;
+		}
+		fmt->byte_len += (i - 1);
 }
 
 void formatstr(fmt_list *fmt)
 {
-	char	*tmp;
-
-	tmp = fmt->formatstr;
+	// char	*tmp;
+    //
+	// tmp = fmt->formatstr;
 	if (FLGNEG(fmt))
-		fmt->formatstr = ft_strappend(tmp, fmt->spaces);
+		fmt->formatstr = ft_strappend(fmt->formatstr, fmt->spaces);
 	else
-		fmt->formatstr = ft_strappend(fmt->spaces, tmp);
+	{
+		fmt->formatstr = ft_strappend(fmt->spaces, fmt->formatstr);
+		fmt->formatstr = ft_strappend(fmt->zeros, fmt->formatstr);
+	}
 	if (fmt->format == 'S')
 		printwidestr(fmt);
 	else
@@ -68,11 +81,16 @@ void formatstr(fmt_list *fmt)
 
 void strflag(fmt_list *fmt)
 {
-	if (fmt->presicion < FMTLEN(fmt) )
+	if (fmt->presicion < FMTLEN(fmt) && fmt->presicionflag == 1)
 		presicionstring(fmt, fmt->presicion);
-	if (fmt->width > FMTLEN(fmt))
-		flagspace(fmt, FMTLEN(fmt));
-	if (fmt->formatstr == NULL && ft_strchr("s", fmt->format))
+	if (fmt->width > 0)
+	{
+		if (ft_strchr(fmt->flags, '0'))
+			flagzero(fmt, FMTLEN(fmt));
+		else
+			flagspace(fmt, FMTLEN(fmt));
+	}
+	if (fmt->formatstr == NULL && ft_strchr("s", fmt->format) && fmt->width == 0)
 	{
 		ft_bzero(fmt->formatstr, FMTLEN(fmt));
 		fmt->formatstr = ft_strdup("(null)");
@@ -82,7 +100,12 @@ void strflag(fmt_list *fmt)
 void charflag(fmt_list *fmt)
 {
 	if (fmt->width > 1)
-		flagspace(fmt, 1);
+	{
+		if (ft_strchr(fmt->flags, '0'))
+			flagzero(fmt, 1);
+		else
+			flagspace(fmt, 1);
+	}
 	if (fmt->width < 0)
 		flagspace(fmt, 1);
 	printchar(fmt);

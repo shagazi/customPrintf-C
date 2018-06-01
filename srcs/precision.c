@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 20:31:00 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/30 23:10:13 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/31 15:15:56 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void presicionstring(fmt_list *fmt, int i)
 	int strlength;
 
 	strlength = FMTLEN(fmt);
-	if (i > 0)
+	if (i >= 0)
 	{
 		while (strlength > i)
 		{
@@ -63,7 +63,7 @@ void negpresicionzero(fmt_list *fmt)
 		zero = ft_strnew(j - FMTLEN(fmt));
 		while (j > FMTLEN(fmt))
 		{
-			zero[j] = '0';
+			zero[k] = '0';
 			k++;
 			j--;
 		}

@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 23:45:47 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/30 22:42:13 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/31 16:35:24 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,18 +90,21 @@ void formatcheck(va_list *arg, fmt_list *fmt)
 	char f;
 
 	f = fmt->format;
+	if (ft_strchr("DU", f))
+		fmt->modifier = MOD_L;
 	if (ft_strchr("Ddi", f))
 		castint(fmt, arg);
-	if (ft_strchr("oOuUxX", f))
+	else if (ft_strchr("oOuUxX", f))
 		fmt->formatstr = (char *)unsignedcast(arg, fmt);
-	if (ft_strchr("cs", f))
+	else if (ft_strchr("cs", f))
 		char_check(fmt, arg);
-	if (ft_strchr("CS", f))
+	else if (ft_strchr("CS", f))
 		wchar_check(arg, fmt);
-	if (fmt->format == 'p') {
+	else if (fmt->format == 'p')
+	{
 		void *ptr = va_arg(*arg, void *);
 		fmt->formatstr = convert_int_toalpha(ptr, fmt);
 	}
-	if (f == '%')
+	else if (f == '%')
 		fmt->formatchar = '%';
 }

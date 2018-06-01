@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/11 18:15:06 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/30 23:07:13 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/31 21:31:18 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void flagzero(fmt_list *fmt, int strlength)
 		zeros = ft_strnew(i - strlength);
 		if (ft_strchr(fmt->flags, '+') || (!(ft_strcmp(fmt->sign, "-"))))
 			i--;
+		if (ft_strchr(fmt->flags, ' '))
+			i--;
 		while (i > strlength)
 		{
 			zeros[z] = '0';
@@ -62,9 +64,9 @@ void flagzero(fmt_list *fmt, int strlength)
 
 void flaghex(fmt_list *fmt)
 {
-	if (fmt->format == 'o') // && (!ft_strcmp(fmt->formatstr, "0")))
+	if (fmt->format == 'o' && ft_strcmp(fmt->formatstr, "0"))
 		fmt->hex = ft_strdup("0");
-	if ((fmt->format == 'O') && (ft_strcmp(fmt->formatstr, "0")))
+	if (fmt->format == 'O') //&& (!ft_strcmp(fmt->formatstr, "0")))
 		fmt->hex = ft_strdup("0");
 	if ((fmt->format == 'x' && ft_strcmp(fmt->formatstr, "0")) ||
 		fmt->format == 'p')
@@ -80,23 +82,21 @@ void flagundef(fmt_list *fmt)
 	char *flagstr;
 
 	i = 0;
-	if (ft_strlen(fmt->flags) > 1)
+	if (ft_strlen(fmt->flags) >= 1)
 	{
 		newstr = ft_strnew(0);
 		flagstr = ft_strdup(fmt->flags);
 		free(fmt->flags);
 		while (flagstr[i] != '\0')
 		{
-			if (flagstr[i] == ' ' && ft_strchr(flagstr, ' ')
-				&& ft_strchr(flagstr, '+'))
-				i++;
-			if (flagstr[i] == '0' && ft_strchr(flagstr, '0')
-				&& ft_strchr(flagstr, '-'))
-				i++;
-			if (flagstr[i] == ' ' && (fmt->width > 0 || (!FLGMINUS(fmt))
-				|| fmt->format == 'u') && (!ft_strchr("di", fmt->format)))
-				i++;
-			newstr = ft_strncat(newstr, &flagstr[i], 1);
+			if (!((flagstr[i] == ' ' && ft_strchr(flagstr, ' ')
+				&& ft_strchr(flagstr, '+')) ||
+				(flagstr[i] == '0' && ft_strchr(flagstr, '0') &&
+				ft_strchr(flagstr, '-')) ||
+				(flagstr[i] == ' ' && (fmt->width > 0 || (!FLGMINUS(fmt))
+				|| ft_strchr("uUoOxXp", fmt->format)) &&
+				(!ft_strchr("di", fmt->format)))))
+				newstr = ft_strncat(newstr, &flagstr[i], 1);
 			i++;
 		}
 		free(flagstr);

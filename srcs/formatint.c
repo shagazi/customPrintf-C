@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 18:20:38 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/30 23:08:50 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/31 15:50:00 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void formatint(fmt_list *fmt)
 		if (ZEROLEN(fmt) && fmt->presicion != FMTLEN(fmt))
 			str = ft_strappend(str, fmt->zeros);
 		fmt->formatstr = ft_strappend(str, fmt->formatstr);
-		if (SPACELEN(fmt) && fmt->width < 0)
+		if (SPACELEN(fmt) && fmt->negwidth < 0)
 			fmt->formatstr = ft_strappend(fmt->formatstr, fmt->spaces);
 	}
 }
@@ -70,7 +70,7 @@ void intflag(fmt_list *fmt)
 		ft_bzero(fmt->formatstr, FMTLEN(fmt));
 	if (FLGNEG(fmt))
 		flagspace(fmt, (FMTLEN(fmt)));
-	else if (fmt->width > (FMTLEN(fmt) + ZEROLEN(fmt)) && fmt->presicion == 0)
+	else if (fmt->width != (FMTLEN(fmt) + ZEROLEN(fmt)) && fmt->presicion == 0)
 		flagspace(fmt, FMTLEN(fmt) + ZEROLEN(fmt));
 	else if (fmt->width > FMTLEN(fmt) && fmt->presicion != 0)
 		flagspace(fmt, FMTLEN(fmt));

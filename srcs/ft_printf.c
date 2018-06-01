@@ -6,11 +6,29 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 20:29:12 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/30 23:25:16 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/31 21:52:14 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
+#include <limits.h>
+
+void fmtassign(fmt_list *fmt)
+{
+	fmt->modifier = 0;
+	fmt->presicion = 0;
+	fmt->width = 0;
+	fmt->negwidth = 0;
+	fmt->formatchar = 0;
+	fmt->formatwstr = NULL;
+	fmt->basenumber = "0123456789";
+	fmt->formatstr = NULL;
+	fmt->sign = "+";
+	fmt->flags = NULL;
+	fmt->hex = NULL;
+	fmt->zeros = NULL;
+	fmt->spaces = NULL;
+}
 
 void formatadjust(fmt_list *fmt)
 {
@@ -35,14 +53,14 @@ void getoutput(fmt_list *fmt, va_list *arg)
 		formathex(fmt);
 		ft_putstr(fmt->formatstr);
 	}
-	if (ft_strchr("sS", fmt->format))
+	else if (ft_strchr("sS", fmt->format))
 	{
 		strflag(fmt);
 		formatstr(fmt);
 	}
-	if (ft_strchr("cC", fmt->format) || fmt->format == '%')
+	else if (ft_strchr("cC", fmt->format) || fmt->format == '%')
 		charflag(fmt);
-	if (ft_strchr("dDiuU", fmt->format))
+	else if (ft_strchr("dDiuU", fmt->format))
 	{
 		intflag(fmt);
 		formatint(fmt);
@@ -93,9 +111,33 @@ int ft_printf(char *format, ...)
 	free(fmt);
 	return (k);
 }
-//
+
+
 // int main()
 // {
-// 	ft_printf("%d%d%d", 42, 43, 44);
+// // // // // //
+// 	// int x = ft_printf("{%*c}", -15, 0);
+// 	// int y = printf("{%*c}", -15, 0);
+// 	int x = ft_printf("%hd%hd\n", (short int)0, (short int)42);
+// 	int y = printf("%hd%hd\n", (short int)0, (short int)42);
+//
+// // // // // // //
+// // 	ft_printf("%#.o, %#.0o\n", 0, 0);
+// // 	printf("%#.o, %#.0o\n", 0, 0);
+// // 	ft_printf("%.o, %.0o\n", 0, 0);
+// // 	printf("%.o, %.0o\n", 0, 0);
+// // 	ft_printf("%.o, %.0O\n", 0, 0);
+// // 	printf("%.o, %.0O\n", 0, 0);
+// //
+// // 	int x = ft_printf("%#o\n", 0);
+// // 	int y = printf("%#o\n", 0);
+// // // // 	// // 	int x = ft_printf("{%05.s}\n", 0);
+// // // // // // 	int y = printf("{%07.s}\n", NULL);
+// // // // // 	// int x = ft_printf("%#.3o\n", 1);
+// // // // // 	// int y = printf("%#.3o\n", 1);
+// // // // // 	int x = ft_printf("{%05.S}\n", L"42 c est cool");
+// // // // // 	int y = printf("{%05.S}\n", L"42 c est cool");
+// printf("%d\n", x);
+// 	printf("%d\n", y);
 // 	return (0);
 // }

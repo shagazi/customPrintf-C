@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 17:19:07 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/30 23:10:16 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/05/31 15:58:47 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,16 @@ int bytelen(fmt_list *fmt)
 	{
 		if (fmt->width > (int)ft_strlen(fmt->formatstr))
 			i = fmt->width;
-		if (fmt->width <= (int)ft_strlen(fmt->formatstr))
+		else if (fmt->width <= (int)ft_strlen(fmt->formatstr) && fmt->width >= 0)
 			i = ft_strlen(fmt->formatstr);
+		else if (fmt->negwidth < 0)
+			i = (fmt->negwidth * -1);
 	}
+	else if (fmt->width > 1)
+		i = fmt->width;
+	else if (fmt->format == '\0')
+		i = 0;
 	else
-	{
-		if (fmt->width > 1)
-			i = fmt->width;
-		else
-			i = 1;
-	}
+		i = 1;
 	return (i);
 }
