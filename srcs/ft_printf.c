@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 20:29:12 by shagazi           #+#    #+#             */
-/*   Updated: 2018/06/01 23:16:05 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/06/01 23:53:55 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void fmtassign(fmt_list *fmt)
 {
 	fmt->modifier = 0;
 	fmt->presicion = 0;
+	fmt->presicionflag = 1;
 	fmt->width = 0;
 	fmt->negwidth = 0;
 	fmt->formatchar = 0;
@@ -118,13 +119,20 @@ int ft_printf(char *format, ...)
 // 	// ft_printf("%s !\n", "Ceci n'est pas un \0 exercice !");
 // 	// ft_printf("%s!\n", "Ceci n'est toujours pas un exercice !");
 // 	// ft_printf("%s!\n", NULL);
-// 	ft_printf("%u", -0);
-// 	ft_printf("%u", 0);
-// 	ft_printf("%u", INT_MAX);
-// 	ft_printf("%u", INT_MIN);
-// 	ft_printf("%u", INT_MIN - 1);
-// 	ft_printf("%u", INT_MAX + 1);
-// 	ft_printf("%%u 0000042 == |%u|\n", 0000042);
-// 	ft_printf("%%u \t == |%u|\n", '\t');
-// 	ft_printf("%%u Lydie == |%u|\n", 'L'+'y'+'d'+'i'+'e');
+//
+// 	ft_printf("%.0u", 42);
+// 	printf("%.0u", 0);
+// 	ft_printf("%.0u", 42);
+// 		printf("%.0u", 0);
+// 	// ft_printf("Kashim a %u histoires à raconter", 1001);
+// 	// ft_printf("Il fait au moins %u\n", -8000);
+// 	// ft_printf("%u", -0);
+// 	// ft_printf("%u", 0);
+// 	// ft_printf("%u", INT_MAX);
+// 	// ft_printf("%u", INT_MIN);
+// 	// ft_printf("%u", INT_MIN - 1);
+// 	// ft_printf("%u", INT_MAX + 1);
+// 	// ft_printf("%%u 0000042 == |%u|\n", 0000042);
+// 	// ft_printf("%%u \t == |%u|\n", '\t');
+// 	// ft_printf("%%u Lydie == |%u|\n", 'L'+'y'+'d'+'i'+'e');
 // }
