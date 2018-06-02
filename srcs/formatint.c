@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 18:20:38 by shagazi           #+#    #+#             */
-/*   Updated: 2018/06/01 22:03:26 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/06/01 22:06:50 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,53 +63,28 @@ void intflaghelp(fmt_list *fmt)
 		flagspace(fmt, fmt->width - 1);
 }
 
-// void intflag(fmt_list *fmt)
-// {
-// 	if (fmt->presicion != FMTLEN(fmt))
-// 	{
-// 		if (fmt->presicion > 0)
-// 			presicionzero(fmt);
-// 		else if (fmt->presicion < 0)
-// 			negpresicionzero(fmt);
-// 		fmt->formatstr = ft_strappend(fmt->zeros, fmt->formatstr);
-// 		fmt->zeros = NULL;
-// 	}
-// 	if((!(ft_strcmp(fmt->formatstr, "0"))) &&
-// 	(fmt->presicionflag == 1 && fmt->presicion == 0))
-// 	{
-// 		free(fmt->formatstr);
-// 		fmt->formatstr = ft_strnew(1);
-// 	}
-// 	if (FLGZERO(fmt))
-// 		flagzero(fmt, (FMTLEN(fmt)));
-// 	intflaghelp(fmt);
-// }
-
 void intflag(fmt_list *fmt)
 {
-	if (fmt->presicion != FMTLEN(fmt) && fmt->presicion > 0)
+	if (fmt->presicion != FMTLEN(fmt))
 	{
-		presicionzero(fmt);
-		fmt->formatstr = ft_strappend(fmt->zeros, fmt->formatstr);
-	}
-	else if (fmt->presicion < 0)
-	{
-		negpresicionzero(fmt);
+		if (fmt->presicion > 0)
+			presicionzero(fmt);
+		else if (fmt->presicion < 0)
+			negpresicionzero(fmt);
 		fmt->formatstr = ft_strappend(fmt->zeros, fmt->formatstr);
 		fmt->zeros = NULL;
 	}
-	else if (FLGZERO(fmt))
+	if((!(ft_strcmp(fmt->formatstr, "0"))) &&
+	(fmt->presicionflag == 1 && fmt->presicion == 0))
+	{
+		free(fmt->formatstr);
+		fmt->formatstr = ft_strnew(1);
+	}
+	if (FLGZERO(fmt))
 		flagzero(fmt, (FMTLEN(fmt)));
-	if (FLGNEG(fmt))
-		flagspace(fmt, (FMTLEN(fmt)));
-	else if (fmt->width != (FMTLEN(fmt) + ZEROLEN(fmt)) && fmt->presicion == 0)
-		flagspace(fmt, FMTLEN(fmt) + ZEROLEN(fmt));
-	else if (fmt->width > FMTLEN(fmt) && fmt->presicion != 0)
-		flagspace(fmt, FMTLEN(fmt));
-	if (FLGSPACE(fmt) && (ft_strcmp(fmt->sign, "-")) &&
-		fmt->width < fmt->presicion && (!(ft_strchr("uU", fmt->format))))
-		flagspace(fmt, fmt->width - 1);
+	intflaghelp(fmt);
 }
+
 
 void castint(fmt_list *fmt, va_list *arg)
 {
