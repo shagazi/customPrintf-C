@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 18:20:38 by shagazi           #+#    #+#             */
-/*   Updated: 2018/06/01 22:18:24 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/06/01 22:29:20 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,14 +77,14 @@ void intflag(fmt_list *fmt)
 		fmt->formatstr = ft_strappend(fmt->zeros, fmt->formatstr);
 		fmt->zeros = NULL;
 	}
+	else if (FLGZERO(fmt))
+		flagzero(fmt, (FMTLEN(fmt)));
 	if((!(ft_strcmp(fmt->formatstr, "0"))) &&
 	(fmt->presicionflag == 1 && fmt->presicion == 0))
 	{
 		free(fmt->formatstr);
 		fmt->formatstr = ft_strnew(1);
 	}
-	if (FLGZERO(fmt))
-		flagzero(fmt, (FMTLEN(fmt)));
 	intflaghelp(fmt);
 }
 

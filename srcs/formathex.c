@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 12:29:08 by shagazi           #+#    #+#             */
-/*   Updated: 2018/06/01 22:17:45 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/06/01 22:22:43 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	hexflags(fmt_list *fmt)
 {
 	if (FLGHASH(fmt) || fmt->format == 'p')
 		flaghex(fmt);
-	if(!ft_strcmp(fmt->formatstr, "0"))
+	if (!ft_strcmp(fmt->formatstr, "0"))
 	{
 		if (FLGHASH(fmt))
 		{

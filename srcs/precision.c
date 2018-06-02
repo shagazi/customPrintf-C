@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 20:31:00 by shagazi           #+#    #+#             */
-/*   Updated: 2018/06/01 21:56:55 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/06/01 22:53:16 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void presicionstring(fmt_list *fmt, int i)
 {
 	int strlength;
-	int newlength;
 	char *tmp;
 
 	strlength = FMTLEN(fmt);
@@ -23,9 +22,8 @@ void presicionstring(fmt_list *fmt, int i)
 	{
 		if (strlength > i)
 		{
-			newlength = strlength - i;
-			tmp = ft_strnew(newlength);
-			ft_strncpy(tmp, fmt->formatstr, newlength);
+			tmp = ft_strnew(i);
+			ft_strncpy(tmp, fmt->formatstr, i);
 			free(fmt->formatstr);
 			fmt->formatstr = ft_strdup(tmp);
 			free(tmp);

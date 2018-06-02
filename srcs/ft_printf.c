@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 20:29:12 by shagazi           #+#    #+#             */
-/*   Updated: 2018/06/01 22:15:00 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/06/01 22:53:03 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,19 +111,17 @@ int ft_printf(char *format, ...)
 	free(fmt);
 	return (k);
 }
-
 // int main()
 // {
-// 	ft_printf("%%#X 42 ==  %#X\n", 42);
-// 	ft_printf("%%X 42 ==  %X\n", 42);
-// 	ft_printf("%%#o 0 ==  %#o\n", 0);
-// 	ft_printf("%%o 0 ==  %o\n", 0);
-// 	ft_printf("%%#o INT_MAX ==  %#o\n", INT_MAX);
-// 	ft_printf("%%o INT_MAX ==  %o\n", INT_MAX);
-// 	ft_printf("%%#o INT_MIN ==  %#o\n", INT_MIN);
-// 	ft_printf("%%o INT_MIN ==  %o\n", INT_MIN);
-// 	ft_printf("%%#X INT_MIN ==  %#X\n", INT_MIN);
-// 	ft_printf("%%X INT_MIN ==  %X\n", INT_MIN);
-// 	ft_printf("%%#X INT_MAX ==  %#X\n", INT_MAX);
-// 	ft_printf("%%X INT_MAX ==  %X\n", INT_MAX);
+// 	ft_printf("%%-5.3s LYDI == |%-5.3s|\n", "LYDI");
+// 	ft_printf("%% 4.5i 42 == |% 4.5i|\n", 42);
+// 	ft_printf("%%04.5i 42 == |%04.5i|\n", 42);
+// 	ft_printf("%%04.3i 42 == |%04.3i|\n", 42);
+// 	ft_printf("%%04.2i 42 == |%04.2i|\n", 42);
+//
+// 	printf("%%-5.3s LYDI == |%-5.3s|\n", "LYDI");
+// 	printf("%% 4.5i 42 == |% 4.5i|\n", 42);
+// 	printf("%%04.5i 42 == |%04.5i|\n", 42);
+// 	printf("%%04.3i 42 == |%04.3i|\n", 42);
+// 	printf("%%04.2i 42 == |%04.2i|\n", 42);
 // }
