@@ -6,12 +6,11 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 20:29:12 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/31 23:54:43 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/06/01 17:15:34 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-// #include <limits.h>
 
 void fmtassign(fmt_list *fmt)
 {
@@ -111,10 +110,3 @@ int ft_printf(char *format, ...)
 	free(fmt);
 	return (k);
 }
-
-
-// int main()
-// {
-// 	ft_printf("%hd %hd", (short int)0, (short int)42);
-//  	return (0);
-//  }

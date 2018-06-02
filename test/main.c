@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/28 17:26:47 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/31 22:36:34 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/06/01 17:16:06 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	ftchecker(void)
 	ft_printf("%lx\n", 4294967296);
 	ft_printf("%hhX\n", 4294967296);
 	ft_printf("%jx\n", 4294967296);
+
 	ft_printf("%jx\n", -4294967296);
 	tmp = ft_printf("#x: %#x\n", 42);
 	ft_printf("Adding length for #x with nl case: 9==%d\n", tmp);

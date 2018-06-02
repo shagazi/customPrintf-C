@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 13:46:23 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/31 21:06:52 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/06/01 17:15:51 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,6 @@ void printwidestr(fmt_list *fmt)
 
 void formatstr(fmt_list *fmt)
 {
-	// char	*tmp;
-    //
-	// tmp = fmt->formatstr;
 	if (FLGNEG(fmt))
 		fmt->formatstr = ft_strappend(fmt->formatstr, fmt->spaces);
 	else
