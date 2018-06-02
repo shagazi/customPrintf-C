@@ -6,7 +6,7 @@
 #    By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/17 14:59:54 by shagazi           #+#    #+#              #
-#    Updated: 2018/06/02 12:57:21 by shagazi          ###   ########.fr        #
+#    Updated: 2018/06/02 14:12:13 by shagazi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME = libftprintf.a
@@ -23,7 +23,7 @@ CFLAGS += -O3 -march=native -pipe
 DEBUG = -g
 
 # src & obj files
-SRC_FILES = ft_printf.c argcast.c flags.c parse.c precision.c write.c \
+SRC_FILES = ft_printf.c argcast.c flags.c parse.c precision.c convertcount.c \
 formathex.c formatstrchar.c formatint.c
 OBJ_FILES = $(SRC_FILES:.c=.o)
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
@@ -57,7 +57,7 @@ clean:
 fclean: clean
 	@make -C $(LIBFT_DIR) fclean
 	@/bin/rm -f $(NAME)
-	#@/bin/rm -f $(TEST)
+	@/bin/rm -f $(TEST)
 	@echo "\`ft_printf\` [INFO] Executable removed"
 
 #test: all
