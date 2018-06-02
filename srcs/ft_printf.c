@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 20:29:12 by shagazi           #+#    #+#             */
-/*   Updated: 2018/06/01 18:47:00 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/06/01 21:57:04 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,13 +110,3 @@ int ft_printf(char *format, ...)
 	free(fmt);
 	return (k);
 }
-//
-// int main()
-// {
-// 	ft_printf("%s", "pouet");
-// 	ft_printf(" pouet %s !!\n", "camembert");
-// 	ft_printf("%s !\n", "Ceci n'est pas un \0 exercice !");
-// 	ft_printf("%s!\n", "Ceci n'est toujours pas un exercice !");
-// 	ft_printf("%s!\n", NULL);
-// 	return(0);
-// }

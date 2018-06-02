@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/11 18:15:06 by shagazi           #+#    #+#             */
-/*   Updated: 2018/06/01 17:49:17 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/06/01 19:42:27 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	flagzero(fmt_list *fmt, int strlength)
 
 void	flaghex(fmt_list *fmt)
 {
-	if (fmt->format == 'o' && ft_strcmp(fmt->formatstr, "0"))
+	if (fmt->format == 'o') //&& ft_strcmp(fmt->formatstr, "0"))
 		fmt->hex = ft_strdup("0");
 	if (fmt->format == 'O')
 		fmt->hex = ft_strdup("0");

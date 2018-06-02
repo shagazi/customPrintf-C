@@ -6,12 +6,29 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 12:29:08 by shagazi           #+#    #+#             */
-/*   Updated: 2018/06/01 18:26:19 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/06/01 21:49:46 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
+void	hexprescisionzero(fmt_list *fmt)
+{
+	if(!ft_strcmp(fmt->formatstr, "0") && fmt->presicionflag == 1 &&
+		fmt->presicion == 0)
+	{
+		if (FLGHASH(fmt))
+		{
+			free(fmt->formatstr);
+			fmt->formatstr = ft_strnew(1);
+		}
+		else
+		{
+			free(fmt->formatstr);
+			fmt->formatstr = ft_strnew(1);
+		}
+	}
+}
 void	nohashflag(fmt_list *fmt)
 {
 	if (FLGNEG(fmt) && (fmt->presicion < fmt->width))
@@ -51,9 +68,9 @@ void	formathex(fmt_list *fmt)
 
 void	hexflags(fmt_list *fmt)
 {
-	if (FLGHASH(fmt) || fmt->format == 'p' || (fmt->format != 'o'
-		&& !ft_strcmp(fmt->formatstr, "0")))
+	if (FLGHASH(fmt) || fmt->format == 'p')
 		flaghex(fmt);
+	hexprescisionzero(fmt);
 	if (fmt->presicion != FMTLEN(fmt))
 	{
 		presicionzero(fmt);
