@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 13:46:23 by shagazi           #+#    #+#             */
-/*   Updated: 2018/06/01 18:37:26 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/06/01 18:46:28 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void formatstr(fmt_list *fmt)
 {
 	if (FLGNEG(fmt))
 		fmt->formatstr = ft_strappend(fmt->formatstr, fmt->spaces);
-	else
+	else if (fmt->spaces || fmt->zeros)
 	{
 		fmt->formatstr = ft_strappend(fmt->spaces, fmt->formatstr);
 		fmt->formatstr = ft_strappend(fmt->zeros, fmt->formatstr);
@@ -97,6 +97,8 @@ void strflag(fmt_list *fmt)
 	}
 	if (fmt->formatstr == NULL && ft_strchr("s", fmt->format))
 		fmt->formatstr = ft_strappend(fmt->formatstr, str);
+	else
+		free(str);
 }
 
 void charflag(fmt_list *fmt)
