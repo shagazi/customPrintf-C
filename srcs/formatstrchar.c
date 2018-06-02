@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 13:46:23 by shagazi           #+#    #+#             */
-/*   Updated: 2018/06/01 17:44:16 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/06/01 18:30:09 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,9 @@ void formatstr(fmt_list *fmt)
 
 void strflag(fmt_list *fmt)
 {
+	char *str;
+
+	str = ft_strdup("(null)");
 	if (fmt->presicion < FMTLEN(fmt) && fmt->presicionflag == 1)
 		presicionstring(fmt, fmt->presicion);
 	if (fmt->width > 0)
@@ -90,10 +93,7 @@ void strflag(fmt_list *fmt)
 			flagspace(fmt, FMTLEN(fmt));
 	}
 	if (fmt->formatstr == NULL && ft_strchr("s", fmt->format) && fmt->width == 0)
-	{
-		ft_bzero(fmt->formatstr, FMTLEN(fmt));
-		fmt->formatstr = ft_strdup("(null)");
-	}
+		fmt->formatstr = ft_strappend(fmt->formatstr, str);
 }
 
 void charflag(fmt_list *fmt)
