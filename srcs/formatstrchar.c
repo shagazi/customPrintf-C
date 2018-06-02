@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 13:46:23 by shagazi           #+#    #+#             */
-/*   Updated: 2018/06/02 00:06:08 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/06/02 13:52:42 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,8 @@ void	strflag(t_struct *fmt)
 	str = ft_strdup("(null)");
 	if (fmt->presicion < FMTLEN(fmt) && fmt->presicionflag == 1)
 		presicionstring(fmt, fmt->presicion);
-	if (fmt->width > 0)
+	if (fmt->width > fmt->presicion || fmt->width > FMTLEN(fmt))
 	{
-		if (fmt->formatstr != NULL)
 		{
 			if (ft_strchr(fmt->flags, '0'))
 				flagzero(fmt, FMTLEN(fmt));
@@ -95,7 +94,8 @@ void	strflag(t_struct *fmt)
 				flagspace(fmt, FMTLEN(fmt));
 		}
 	}
-	if (fmt->formatstr == NULL && ft_strchr("s", fmt->format))
+	if (fmt->formatstr == NULL && ft_strchr("s", fmt->format)
+		&& fmt->presicionflag != 1)
 		fmt->formatstr = ft_strappend(fmt->formatstr, str);
 	else
 		free(str);

@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 12:29:08 by shagazi           #+#    #+#             */
-/*   Updated: 2018/06/01 22:22:43 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/06/02 13:21:53 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ void	hexflags(t_struct *fmt)
 		flaghex(fmt);
 	if (!ft_strcmp(fmt->formatstr, "0"))
 	{
-		if (FLGHASH(fmt))
+		if ((FLGHASH(fmt) && !ft_strchr("xX", fmt->format))
+			|| (fmt->presicionflag == 1 && fmt->presicion == 0))
 		{
 			free(fmt->formatstr);
 			fmt->formatstr = ft_strnew(1);

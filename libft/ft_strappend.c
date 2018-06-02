@@ -6,17 +6,17 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 15:11:36 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/30 16:50:39 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/06/02 13:55:54 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char *ft_strappend(char *s1, char *s2)
+char	*ft_strappend(char *s1, char *s2)
 {
-	int i;
-	char *tmp;
-	char *tmptwo;
+	int		i;
+	char	*tmp;
+	char	*tmptwo;
 
 	i = 0;
 	if (!s1)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shagazi <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/22 10:56:29 by shagazi           #+#    #+#             */
-/*   Updated: 2018/04/16 23:13:15 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/06/02 13:45:21 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,3 @@ char	*ft_strcpy(char *dest, const char *src)
 	dest[i] = '\0';
 	return (dest);
 }
-

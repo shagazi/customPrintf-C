@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 19:27:29 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/19 13:44:03 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/06/02 13:51:35 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ char	*ft_strcat(char *dest, const char *src)
 {
 	int		i;
 	int		j;
-	int 	k;
-	char 	*str;
+	int		k;
+	char	*str;
 
 	str = malloc(sizeof(char) * (ft_strlen(dest) + ft_strlen(src) + 1));
 	i = 0;

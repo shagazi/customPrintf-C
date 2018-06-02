@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/26 00:51:18 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/20 15:23:01 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/06/02 13:45:06 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char				*ft_strcpy(char *dest, const char *src);
 char				*ft_strncpy(char *dst, const char *src, size_t len);
 char				*ft_strcat(char *dest, const char *src);
 char				*ft_strncat(char *dest, const char *src, size_t n);
-char 				*ft_removedup(char *str);
+char				*ft_removedup(char *str);
 
 size_t				ft_strlcat(char *dest, const char *src, size_t size);
 
@@ -75,7 +75,7 @@ char				*ft_itoa(int n);
 char				*ft_llitoa_tobase(long long int n, char *base);
 char				*ft_ullitoa_tobase(unsigned long long int n, char *base);
 char				*ft_strjoin(char const *s1, char const *s2);
-char 				*ft_strappend(char *s1, char *s2);
+char				*ft_strappend(char *s1, char *s2);
 
 void				ft_putstr(char const *s);
 void				ft_putendl(char const *s);

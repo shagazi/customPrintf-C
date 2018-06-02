@@ -6,13 +6,15 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 13:06:08 by shagazi           #+#    #+#             */
-/*   Updated: 2018/04/16 16:34:40 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/06/02 13:46:32 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/* Creates a new node to a list, containing the content and its size */
+/*
+** Creates a new node to a list, containing the content and its size
+*/
 
 t_list	*ft_lstnew(void const *content, size_t content_size)
 {
