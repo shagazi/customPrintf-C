@@ -6,13 +6,13 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 12:29:08 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/31 21:44:51 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/06/01 18:23:25 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void nohashflag(fmt_list *fmt)
+void	nohashflag(fmt_list *fmt)
 {
 	if (FLGNEG(fmt) && (fmt->presicion < fmt->width))
 		fmt->formatstr = ft_strappend(fmt->formatstr, fmt->spaces);
@@ -22,9 +22,9 @@ void nohashflag(fmt_list *fmt)
 		fmt->formatstr = ft_strappend(fmt->spaces, fmt->formatstr);
 }
 
-void formathex(fmt_list *fmt)
+void	formathex(fmt_list *fmt)
 {
-	char *tmp;
+	char	*tmp;
 
 	tmp = NULL;
 	if (FLGHASH(fmt) || fmt->format == 'p')
@@ -49,26 +49,22 @@ void formathex(fmt_list *fmt)
 		nohashflag(fmt);
 }
 
-void hexflags(fmt_list *fmt)
+void	hexflags(fmt_list *fmt)
 {
-
-	if (FLGHASH(fmt) || fmt->format == 'p')
+	if ((FLGHASH(fmt) || fmt->format == 'p') && (fmt->format != 'o'
+		&& !ft_strcmp(fmt->formatstr, "0")))
 		flaghex(fmt);
-	if((!(ft_strcmp(fmt->formatstr, "0"))) &&
-		fmt->presicionflag == 1 && fmt->presicion == 0 && (fmt->format != 'o'
-		|| (!FLGHASH(fmt))))
-		ft_bzero(fmt->formatstr, FMTLEN(fmt));
 	if (fmt->presicion != FMTLEN(fmt))
 	{
 		presicionzero(fmt);
 		fmt->formatstr = ft_strappend(fmt->zeros, fmt->formatstr);
 	}
- 	if (FLGNEG(fmt))
+	if (FLGNEG(fmt))
 		flagspace(fmt, (FMTLEN(fmt) + HEXLEN(fmt)));
 	if (FLGZERO(fmt))
 		flagzero(fmt, (FMTLEN(fmt) + HEXLEN(fmt)));
 	if (!FLGZERO(fmt) && (!FLGNEG(fmt)) && fmt->width > 0)
 		flagspace(fmt, (FMTLEN(fmt) + HEXLEN(fmt)));
 	if (FLGSPACE(fmt) && fmt->width == 0)
-		fmt->spaces  = ft_strdup(" ");
+		fmt->spaces = ft_strdup(" ");
 }

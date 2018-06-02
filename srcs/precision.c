@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 20:31:00 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/31 23:37:14 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/06/01 17:43:20 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,10 @@ void presicionzero(fmt_list *fmt)
 
 void negpresicionzero(fmt_list *fmt)
 {
-	int i;
 	int j;
 	int k;
 	char *zero;
 
-	i = fmt->presicion;
 	j = fmt->width;
 	k = 0;
 	if (j > FMTLEN(fmt))
@@ -105,13 +103,8 @@ void intpresicion(fmt_list *fmt)
 
 void applypresicion(fmt_list *fmt)
 {
-	char *tmpstr;
-	int i;
-
-	i = fmt->presicion;
 	if (fmt->presicion > 0)
 	{
-		tmpstr = fmt->formatstr;
 		if (ft_strchr("dDioOuUxXp",fmt->format))
 			intpresicion(fmt);
 		if (fmt->format == 's')

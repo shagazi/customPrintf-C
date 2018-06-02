@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 13:46:23 by shagazi           #+#    #+#             */
-/*   Updated: 2018/06/01 17:15:51 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/06/01 17:44:16 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void printwidestr(fmt_list *fmt)
 		fmt->byte_len += 6;
 	}
 	else
+	{
 		while (*p)
 		{
 			ft_putchar((char)*p);
@@ -59,6 +60,7 @@ void printwidestr(fmt_list *fmt)
 			i++;
 		}
 		fmt->byte_len += (i - 1);
+	}
 }
 
 void formatstr(fmt_list *fmt)

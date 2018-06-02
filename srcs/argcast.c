@@ -6,16 +6,16 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 23:45:47 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/31 22:20:47 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/06/01 17:41:09 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-char *signedcast(va_list *arg, fmt_list *fmt)
+char	*signedcast(va_list *arg, fmt_list *fmt)
 {
-	int m;
-	long long int n;
+	int				m;
+	long long int	n;
 
 	m = fmt->modifier;
 	if (m == MOD_HH)
@@ -32,10 +32,10 @@ char *signedcast(va_list *arg, fmt_list *fmt)
 		n = va_arg(*arg, size_t);
 	else
 		n = (int)va_arg(*arg, int);
-	return(convert_int_toalpha((void *)&n, fmt));
+	return (convert_int_toalpha((void *)&n, fmt));
 }
 
-char *unsignedcast(va_list *arg, fmt_list *fmt)
+char	*unsignedcast(va_list *arg, fmt_list *fmt)
 {
 	unsigned long long int n;
 
@@ -59,10 +59,10 @@ char *unsignedcast(va_list *arg, fmt_list *fmt)
 		n = va_arg(*arg, ssize_t);
 	else
 		n = (unsigned int)va_arg(*arg, unsigned int);
-	return(convert_int_toalpha((void *)&n, fmt));
+	return (convert_int_toalpha((void *)&n, fmt));
 }
 
-void  wchar_check(va_list *arg, fmt_list *fmt)
+void	wchar_check(va_list *arg, fmt_list *fmt)
 {
 	wchar_t p;
 
@@ -77,7 +77,7 @@ void  wchar_check(va_list *arg, fmt_list *fmt)
 	}
 }
 
-void char_check(fmt_list *fmt, va_list *arg)
+void	char_check(fmt_list *fmt, va_list *arg)
 {
 	if (fmt->format == 'c')
 		fmt->formatchar = (char)va_arg(*arg, int);
@@ -85,9 +85,10 @@ void char_check(fmt_list *fmt, va_list *arg)
 		fmt->formatstr = ft_strdup(va_arg(*arg, char *));
 }
 
-void formatcheck(va_list *arg, fmt_list *fmt)
+void	formatcheck(va_list *arg, fmt_list *fmt)
 {
 	char f;
+	void *ptr;
 
 	f = fmt->format;
 	if (ft_strchr("DU", f))
@@ -102,7 +103,7 @@ void formatcheck(va_list *arg, fmt_list *fmt)
 		wchar_check(arg, fmt);
 	else if (fmt->format == 'p')
 	{
-		void *ptr = va_arg(*arg, void *);
+		ptr = va_arg(*arg, void *);
 		fmt->formatstr = convert_int_toalpha(ptr, fmt);
 	}
 	else if (f == '%')

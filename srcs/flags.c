@@ -6,17 +6,17 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/11 18:15:06 by shagazi           #+#    #+#             */
-/*   Updated: 2018/05/31 22:57:36 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/06/01 17:49:17 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void flagspace(fmt_list *fmt, int strlength)
+void	flagspace(fmt_list *fmt, int strlength)
 {
-	int i;
-	int s;
-	char *spaces;
+	int		i;
+	int		s;
+	char	*spaces;
 
 	i = fmt->width;
 	s = 0;
@@ -37,11 +37,11 @@ void flagspace(fmt_list *fmt, int strlength)
 	}
 }
 
-void flagzero(fmt_list *fmt, int strlength)
+void	flagzero(fmt_list *fmt, int strlength)
 {
-	int i;
-	int z;
-	char *zeros;
+	int		i;
+	int		z;
+	char	*zeros;
 
 	i = fmt->width;
 	z = 0;
@@ -62,11 +62,11 @@ void flagzero(fmt_list *fmt, int strlength)
 	}
 }
 
-void flaghex(fmt_list *fmt)
+void	flaghex(fmt_list *fmt)
 {
 	if (fmt->format == 'o' && ft_strcmp(fmt->formatstr, "0"))
 		fmt->hex = ft_strdup("0");
-	if (fmt->format == 'O') //&& (!ft_strcmp(fmt->formatstr, "0")))
+	if (fmt->format == 'O')
 		fmt->hex = ft_strdup("0");
 	if ((fmt->format == 'x' && ft_strcmp(fmt->formatstr, "0")) ||
 		fmt->format == 'p')
@@ -75,7 +75,7 @@ void flaghex(fmt_list *fmt)
 		fmt->hex = ft_strdup("0X");
 }
 
-void flagundef(fmt_list *fmt)
+void	flagundef(fmt_list *fmt)
 {
 	int i;
 	int j;
