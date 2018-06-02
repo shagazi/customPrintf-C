@@ -12,7 +12,7 @@
 
 #include "../includes/ft_printf.h"
 
-char	*signedcast(va_list *arg, fmt_list *fmt)
+char	*signedcast(va_list *arg, t_struct *fmt)
 {
 	int				m;
 	long long int	n;
@@ -35,7 +35,7 @@ char	*signedcast(va_list *arg, fmt_list *fmt)
 	return (convert_int_toalpha((void *)&n, fmt));
 }
 
-char	*unsignedcast(va_list *arg, fmt_list *fmt)
+char	*unsignedcast(va_list *arg, t_struct *fmt)
 {
 	unsigned long long int n;
 
@@ -62,7 +62,7 @@ char	*unsignedcast(va_list *arg, fmt_list *fmt)
 	return (convert_int_toalpha((void *)&n, fmt));
 }
 
-void	wchar_check(va_list *arg, fmt_list *fmt)
+void	wchar_check(va_list *arg, t_struct *fmt)
 {
 	wchar_t p;
 
@@ -77,7 +77,7 @@ void	wchar_check(va_list *arg, fmt_list *fmt)
 	}
 }
 
-void	char_check(fmt_list *fmt, va_list *arg)
+void	char_check(t_struct *fmt, va_list *arg)
 {
 	if (fmt->format == 'c')
 		fmt->formatchar = (char)va_arg(*arg, int);
@@ -85,7 +85,7 @@ void	char_check(fmt_list *fmt, va_list *arg)
 		fmt->formatstr = ft_strdup(va_arg(*arg, char *));
 }
 
-void	formatcheck(va_list *arg, fmt_list *fmt)
+void	formatcheck(va_list *arg, t_struct *fmt)
 {
 	char f;
 	void *ptr;

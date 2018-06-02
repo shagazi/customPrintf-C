@@ -6,35 +6,37 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/30 22:48:00 by shagazi           #+#    #+#             */
-/*   Updated: 2018/06/01 22:43:27 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/06/02 00:08:04 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int parse_modifier(char *str, fmt_list *fmt)
+int		parse_modifier(char *str, t_struct *fmt)
 {
-	int i = 0;
-	if(str[0] == 'h' && str[1] == 'h')
+	int i;
+
+	i = 0;
+	if (str[0] == 'h' && str[1] == 'h')
 		fmt->modifier = MOD_HH;
-	else if(str[0] == 'l' && str[1] == 'l')
+	else if (str[0] == 'l' && str[1] == 'l')
 		fmt->modifier = MOD_LL;
-	else if(str[0] == 'h')
+	else if (str[0] == 'h')
 		fmt->modifier = MOD_H;
-	else if(str[0] == 'l')
+	else if (str[0] == 'l')
 		fmt->modifier = MOD_L;
-	else if(str[0] == 'j')
+	else if (str[0] == 'j')
 		fmt->modifier = MOD_J;
-	else if(str[0] == 'z')
+	else if (str[0] == 'z')
 		fmt->modifier = MOD_Z;
-	if(fmt->modifier == 1 || fmt->modifier == 2)
+	if (fmt->modifier == 1 || fmt->modifier == 2)
 		i = 2;
-	if(fmt->modifier >= 3 && fmt->modifier <= 6)
+	if (fmt->modifier >= 3 && fmt->modifier <= 6)
 		i = 1;
 	return (i);
 }
 
-int parse_precision(char *str, fmt_list *fmt, va_list *arg)
+int		parse_precision(char *str, t_struct *fmt, va_list *arg)
 {
 	int i;
 
@@ -56,7 +58,7 @@ int parse_precision(char *str, fmt_list *fmt, va_list *arg)
 	return (i);
 }
 
-int parse_width(char *str, fmt_list *fmt, va_list *arg)
+int		parse_width(char *str, t_struct *fmt, va_list *arg)
 {
 	int i;
 
@@ -82,15 +84,15 @@ int parse_width(char *str, fmt_list *fmt, va_list *arg)
 	return (i);
 }
 
-int parse_flags(char *str, fmt_list *fmt)
+int		parse_flags(char *str, t_struct *fmt)
 {
-	int i;
-	char *tmp;
+	int		i;
+	char	*tmp;
 
 	i = 0;
 	while (str[i] == ' ' || str[i] == '-' || str[i] == '+' || str[i] == '0'
 		|| str[i] == '#')
-	i++;
+		i++;
 	tmp = ft_strnew(i);
 	ft_strncpy(tmp, str, i);
 	fmt->flags = ft_removedup(tmp);
@@ -98,7 +100,7 @@ int parse_flags(char *str, fmt_list *fmt)
 	return (i);
 }
 
-int parse_percent(char *str, fmt_list *fmt, va_list *arg)
+int		parse_percent(char *str, t_struct *fmt, va_list *arg)
 {
 	int i;
 

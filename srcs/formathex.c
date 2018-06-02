@@ -12,7 +12,7 @@
 
 #include "../includes/ft_printf.h"
 
-void	nohashflag(fmt_list *fmt)
+void	nohashflag(t_struct *fmt)
 {
 	if (FLGNEG(fmt) && (fmt->presicion < fmt->width))
 		fmt->formatstr = ft_strappend(fmt->formatstr, fmt->spaces);
@@ -22,7 +22,7 @@ void	nohashflag(fmt_list *fmt)
 		fmt->formatstr = ft_strappend(fmt->spaces, fmt->formatstr);
 }
 
-void	formathex(fmt_list *fmt)
+void	formathex(t_struct *fmt)
 {
 	char	*tmp;
 
@@ -49,7 +49,7 @@ void	formathex(fmt_list *fmt)
 		nohashflag(fmt);
 }
 
-void	hexflags(fmt_list *fmt)
+void	hexflags(t_struct *fmt)
 {
 	if (FLGHASH(fmt) || fmt->format == 'p')
 		flaghex(fmt);

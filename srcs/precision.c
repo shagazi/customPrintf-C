@@ -6,16 +6,16 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 20:31:00 by shagazi           #+#    #+#             */
-/*   Updated: 2018/06/01 22:53:16 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/06/02 00:09:57 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void presicionstring(fmt_list *fmt, int i)
+void	presicionstring(t_struct *fmt, int i)
 {
-	int strlength;
-	char *tmp;
+	int		strlength;
+	char	*tmp;
 
 	strlength = FMTLEN(fmt);
 	if (i >= 0)
@@ -31,12 +31,12 @@ void presicionstring(fmt_list *fmt, int i)
 	}
 }
 
-void presicionzero(fmt_list *fmt)
+void	presicionzero(t_struct *fmt)
 {
-	int i;
-	int j;
-	int strlength;
-	char *zero;
+	int		i;
+	int		j;
+	int		strlength;
+	char	*zero;
 
 	j = 0;
 	i = fmt->presicion;
@@ -57,11 +57,11 @@ void presicionzero(fmt_list *fmt)
 	}
 }
 
-void negpresicionzero(fmt_list *fmt)
+void	negpresicionzero(t_struct *fmt)
 {
-	int j;
-	int k;
-	char *zero;
+	int		j;
+	int		k;
+	char	*zero;
 
 	j = fmt->width;
 	k = 0;
@@ -78,13 +78,13 @@ void negpresicionzero(fmt_list *fmt)
 	}
 }
 
-void intpresicion(fmt_list *fmt)
+void	intpresicion(t_struct *fmt)
 {
-	char *zero;
-	int j;
+	char	*zero;
+	int		j;
 
 	j = 0;
-	if (ft_strchr("dDi",fmt->format))
+	if (ft_strchr("dDi", fmt->format))
 	{
 		if (j < (fmt->presicion - (int)ft_strlen(fmt->formatstr)))
 		{
@@ -97,7 +97,7 @@ void intpresicion(fmt_list *fmt)
 			fmt->formatstr = ft_strappend(zero, fmt->formatstr);
 		}
 	}
-	if (ft_strchr("oOuUxX",fmt->format))
+	if (ft_strchr("oOuUxX", fmt->format))
 	{
 		if (fmt->presicion > FMTLEN(fmt))
 			presicionzero(fmt);
@@ -105,11 +105,11 @@ void intpresicion(fmt_list *fmt)
 	}
 }
 
-void applypresicion(fmt_list *fmt)
+void	applypresicion(t_struct *fmt)
 {
 	if (fmt->presicion > 0)
 	{
-		if (ft_strchr("dDioOuUxXp",fmt->format))
+		if (ft_strchr("dDioOuUxXp", fmt->format))
 			intpresicion(fmt);
 		if (fmt->format == 's')
 			presicionstring(fmt, fmt->presicion);

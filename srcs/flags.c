@@ -6,13 +6,13 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/11 18:15:06 by shagazi           #+#    #+#             */
-/*   Updated: 2018/06/01 22:23:27 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/06/02 00:11:46 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void	flagspace(fmt_list *fmt, int strlength)
+void	flagspace(t_struct *fmt, int strlength)
 {
 	int		i;
 	int		s;
@@ -37,7 +37,7 @@ void	flagspace(fmt_list *fmt, int strlength)
 	}
 }
 
-void	flagzero(fmt_list *fmt, int strlength)
+void	flagzero(t_struct *fmt, int strlength)
 {
 	int		i;
 	int		z;
@@ -62,7 +62,7 @@ void	flagzero(fmt_list *fmt, int strlength)
 	}
 }
 
-void	flaghex(fmt_list *fmt)
+void	flaghex(t_struct *fmt)
 {
 	if (fmt->format == 'o')
 		fmt->hex = ft_strdup("0");
@@ -75,15 +75,20 @@ void	flaghex(fmt_list *fmt)
 		fmt->hex = ft_strdup("0X");
 }
 
-void	flagundef(fmt_list *fmt)
+void	set_args(int *i, int *j)
+{
+	*i = 0;
+	*j = 0;
+}
+
+void	flagundef(t_struct *fmt)
 {
 	int		i;
 	int		j;
 	char	*newstr;
 	char	*flagstr;
 
-	i = 0;
-	j = 0;
+	set_args(&i, &j);
 	if (ft_strlen(fmt->flags) >= 1)
 	{
 		newstr = ft_strnew(5);

@@ -6,13 +6,13 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 13:46:23 by shagazi           #+#    #+#             */
-/*   Updated: 2018/06/01 22:20:49 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/06/02 00:06:08 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void printchar(fmt_list *fmt)
+void	printchar(t_struct *fmt)
 {
 	if (FLGNEG(fmt))
 	{
@@ -39,10 +39,10 @@ void printchar(fmt_list *fmt)
 	}
 }
 
-void printwidestr(fmt_list *fmt)
+void	printwidestr(t_struct *fmt)
 {
-	wchar_t *p;
-	int i;
+	wchar_t		*p;
+	int			i;
 
 	p = fmt->formatwstr;
 	i = 0;
@@ -63,7 +63,7 @@ void printwidestr(fmt_list *fmt)
 	}
 }
 
-void formatstr(fmt_list *fmt)
+void	formatstr(t_struct *fmt)
 {
 	if (FLGNEG(fmt))
 		fmt->formatstr = ft_strappend(fmt->formatstr, fmt->spaces);
@@ -78,7 +78,7 @@ void formatstr(fmt_list *fmt)
 		ft_putstr(fmt->formatstr);
 }
 
-void strflag(fmt_list *fmt)
+void	strflag(t_struct *fmt)
 {
 	char *str;
 
@@ -87,7 +87,7 @@ void strflag(fmt_list *fmt)
 		presicionstring(fmt, fmt->presicion);
 	if (fmt->width > 0)
 	{
-		if(fmt->formatstr != NULL)
+		if (fmt->formatstr != NULL)
 		{
 			if (ft_strchr(fmt->flags, '0'))
 				flagzero(fmt, FMTLEN(fmt));
@@ -101,7 +101,7 @@ void strflag(fmt_list *fmt)
 		free(str);
 }
 
-void charflag(fmt_list *fmt)
+void	charflag(t_struct *fmt)
 {
 	if (fmt->width > 1)
 	{

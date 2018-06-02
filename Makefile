@@ -6,7 +6,7 @@
 #    By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/17 14:59:54 by shagazi           #+#    #+#              #
-#    Updated: 2018/05/31 16:55:46 by shagazi          ###   ########.fr        #
+#    Updated: 2018/06/02 12:57:21 by shagazi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME = libftprintf.a
@@ -16,7 +16,6 @@ OBJ_DIR = obj/
 SRC_DIR = srcs/
 INC_DIR = includes/
 LIBFT_DIR = libft/
-TEST_DIR = test/
 
 # complier
 CFLAGS = -Wall -Wextra -Werror

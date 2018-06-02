@@ -6,14 +6,13 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 20:29:12 by shagazi           #+#    #+#             */
-/*   Updated: 2018/06/01 23:55:30 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/06/02 00:04:26 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-#include <limits.h>
 
-void fmtassign(fmt_list *fmt)
+void	fmtassign(t_struct *fmt)
 {
 	fmt->modifier = 0;
 	fmt->presicion = 0;
@@ -31,7 +30,7 @@ void fmtassign(fmt_list *fmt)
 	fmt->spaces = NULL;
 }
 
-void formatadjust(fmt_list *fmt)
+void	formatadjust(t_struct *fmt)
 {
 	if (fmt->modifier == MOD_L)
 	{
@@ -43,7 +42,8 @@ void formatadjust(fmt_list *fmt)
 			fmt->format = 'C';
 	}
 }
-void getoutput(fmt_list *fmt, va_list *arg)
+
+void	getoutput(t_struct *fmt, va_list *arg)
 {
 	formatadjust(fmt);
 	formatcheck(arg, fmt);
@@ -69,7 +69,7 @@ void getoutput(fmt_list *fmt, va_list *arg)
 	}
 }
 
-int sizeofstring(char *format, int i, fmt_list *fmt, va_list *arg)
+int		sizeofstring(char *format, int i, t_struct *fmt, va_list *arg)
 {
 	int k;
 
@@ -94,17 +94,17 @@ int sizeofstring(char *format, int i, fmt_list *fmt, va_list *arg)
 	return (k);
 }
 
-int ft_printf(char *format, ...)
+int		ft_printf(char *format, ...)
 {
-	int i;
-	int k;
-	fmt_list *fmt;
+	int			i;
+	int			k;
+	t_struct	*fmt;
+	va_list		arg;
 
-	fmt = malloc(sizeof(fmt_list));
+	fmt = malloc(sizeof(t_struct));
 	i = 0;
 	k = 0;
 	fmt->byte_len = 0;
-	va_list arg;
 	va_start(arg, format);
 	k = sizeofstring(format, i, fmt, &arg);
 	va_end(arg);
@@ -112,27 +112,3 @@ int ft_printf(char *format, ...)
 	free(fmt);
 	return (k);
 }
-// int main()
-// {
-// 	// ft_printf("%s", "pouet");
-// 	// ft_printf(" pouet %s !!\n", "camembert");
-// 	// ft_printf("%s !\n", "Ceci n'est pas un \0 exercice !");
-// 	// ft_printf("%s!\n", "Ceci n'est toujours pas un exercice !");
-// 	// ft_printf("%s!\n", NULL);
-//
-// 	ft_printf("%.0u", 42);
-// 	printf("%.0u", 0);
-// 	ft_printf("%.0u", 42);
-// 		printf("%.0u", 0);
-// 	// ft_printf("Kashim a %u histoires à raconter", 1001);
-// 	// ft_printf("Il fait au moins %u\n", -8000);
-// 	// ft_printf("%u", -0);
-// 	// ft_printf("%u", 0);
-// 	// ft_printf("%u", INT_MAX);
-// 	// ft_printf("%u", INT_MIN);
-// 	// ft_printf("%u", INT_MIN - 1);
-// 	// ft_printf("%u", INT_MAX + 1);
-// 	// ft_printf("%%u 0000042 == |%u|\n", 0000042);
-// 	// ft_printf("%%u \t == |%u|\n", '\t');
-// 	// ft_printf("%%u Lydie == |%u|\n", 'L'+'y'+'d'+'i'+'e');
-// }

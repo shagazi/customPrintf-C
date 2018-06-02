@@ -6,13 +6,13 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 18:20:38 by shagazi           #+#    #+#             */
-/*   Updated: 2018/06/01 23:16:53 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/06/01 23:59:20 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void formatnegint(fmt_list *fmt, char *str)
+void	formatnegint(t_struct *fmt, char *str)
 {
 	if (FLGSPACE(fmt))
 		str[0] = ' ';
@@ -25,7 +25,7 @@ void formatnegint(fmt_list *fmt, char *str)
 		fmt->formatstr = ft_strappend(fmt->formatstr, fmt->spaces);
 }
 
-void formatint(fmt_list *fmt)
+void	formatint(t_struct *fmt)
 {
 	char *str;
 
@@ -50,7 +50,7 @@ void formatint(fmt_list *fmt)
 	}
 }
 
-void intflaghelp(fmt_list *fmt)
+void	intflaghelp(t_struct *fmt)
 {
 	if (FLGNEG(fmt))
 		flagspace(fmt, (FMTLEN(fmt)));
@@ -63,9 +63,8 @@ void intflaghelp(fmt_list *fmt)
 		flagspace(fmt, fmt->width - 1);
 }
 
-void intflag(fmt_list *fmt)
+void	intflag(t_struct *fmt)
 {
-
 	if (fmt->presicion != FMTLEN(fmt) && fmt->presicion > 0)
 	{
 		presicionzero(fmt);
@@ -77,7 +76,7 @@ void intflag(fmt_list *fmt)
 		fmt->formatstr = ft_strappend(fmt->zeros, fmt->formatstr);
 		fmt->zeros = NULL;
 	}
-	if((!(ft_strcmp(fmt->formatstr, "0"))) &&
+	if ((!(ft_strcmp(fmt->formatstr, "0"))) &&
 	(fmt->presicionflag == 1 && fmt->presicion == 0))
 	{
 		free(fmt->formatstr);
@@ -88,8 +87,7 @@ void intflag(fmt_list *fmt)
 	intflaghelp(fmt);
 }
 
-
-void castint(fmt_list *fmt, va_list *arg)
+void	castint(t_struct *fmt, va_list *arg)
 {
 	char *tmp;
 
