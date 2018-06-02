@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 13:46:23 by shagazi           #+#    #+#             */
-/*   Updated: 2018/06/01 18:30:09 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/06/01 18:37:26 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,15 @@ void strflag(fmt_list *fmt)
 		presicionstring(fmt, fmt->presicion);
 	if (fmt->width > 0)
 	{
-		if (ft_strchr(fmt->flags, '0'))
-			flagzero(fmt, FMTLEN(fmt));
-		else
-			flagspace(fmt, FMTLEN(fmt));
+		if(fmt->formatstr != NULL)
+		{
+			if (ft_strchr(fmt->flags, '0'))
+				flagzero(fmt, FMTLEN(fmt));
+			else
+				flagspace(fmt, FMTLEN(fmt));
+		}
 	}
-	if (fmt->formatstr == NULL && ft_strchr("s", fmt->format) && fmt->width == 0)
+	if (fmt->formatstr == NULL && ft_strchr("s", fmt->format))
 		fmt->formatstr = ft_strappend(fmt->formatstr, str);
 }
 
