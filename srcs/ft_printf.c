@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 20:29:12 by shagazi           #+#    #+#             */
-/*   Updated: 2018/06/01 23:53:55 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/06/01 23:55:30 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void fmtassign(fmt_list *fmt)
 {
 	fmt->modifier = 0;
 	fmt->presicion = 0;
-	fmt->presicionflag = 1;
+	fmt->presicionflag = 0;
 	fmt->width = 0;
 	fmt->negwidth = 0;
 	fmt->formatchar = 0;
