@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 20:29:12 by shagazi           #+#    #+#             */
-/*   Updated: 2018/06/01 23:12:01 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/06/01 23:16:05 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,20 +111,20 @@ int ft_printf(char *format, ...)
 	free(fmt);
 	return (k);
 }
-int main()
-{
-	// ft_printf("%s", "pouet");
-	// ft_printf(" pouet %s !!\n", "camembert");
-	// ft_printf("%s !\n", "Ceci n'est pas un \0 exercice !");
-	// ft_printf("%s!\n", "Ceci n'est toujours pas un exercice !");
-	// ft_printf("%s!\n", NULL);
-	ft_printf("%u", -0);
-	ft_printf("%u", 0);
-	ft_printf("%u", INT_MAX);
-	ft_printf("%u", INT_MIN);
-	ft_printf("%u", INT_MIN - 1);
-	ft_printf("%u", INT_MAX + 1);
-	ft_printf("%%u 0000042 == |%u|\n", 0000042);
-	ft_printf("%%u \t == |%u|\n", '\t');
-	ft_printf("%%u Lydie == |%u|\n", 'L'+'y'+'d'+'i'+'e');
-}
+// int main()
+// {
+// 	// ft_printf("%s", "pouet");
+// 	// ft_printf(" pouet %s !!\n", "camembert");
+// 	// ft_printf("%s !\n", "Ceci n'est pas un \0 exercice !");
+// 	// ft_printf("%s!\n", "Ceci n'est toujours pas un exercice !");
+// 	// ft_printf("%s!\n", NULL);
+// 	ft_printf("%u", -0);
+// 	ft_printf("%u", 0);
+// 	ft_printf("%u", INT_MAX);
+// 	ft_printf("%u", INT_MIN);
+// 	ft_printf("%u", INT_MIN - 1);
+// 	ft_printf("%u", INT_MAX + 1);
+// 	ft_printf("%%u 0000042 == |%u|\n", 0000042);
+// 	ft_printf("%%u \t == |%u|\n", '\t');
+// 	ft_printf("%%u Lydie == |%u|\n", 'L'+'y'+'d'+'i'+'e');
+// }
