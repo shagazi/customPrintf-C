@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 13:46:23 by shagazi           #+#    #+#             */
-/*   Updated: 2018/06/02 13:52:42 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/06/03 15:20:00 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,13 @@ void	printwidestr(t_struct *fmt)
 			p++;
 			i++;
 		}
-		fmt->byte_len += (i - 1);
+		fmt->byte_len += (i);
 	}
 }
 
 void	formatstr(t_struct *fmt)
 {
-	if (FLGNEG(fmt))
+	if (FLGNEG(fmt) && fmt->formatstr != NULL)
 		fmt->formatstr = ft_strappend(fmt->formatstr, fmt->spaces);
 	else if (fmt->spaces || fmt->zeros)
 	{
@@ -83,6 +83,12 @@ void	strflag(t_struct *fmt)
 	char *str;
 
 	str = ft_strdup("(null)");
+	if (fmt->formatstr == NULL && ft_strchr("s", fmt->format))
+		fmt->formatstr = ft_strappend(fmt->formatstr, str);
+	// if (fmt->formatwstr == NULL && ft_strchr("S", fmt->format))
+	// 	fmt->formatwstr = (wchar_t *)ft_strappend((wchar_t *)fmt->formatwstr, str);
+	else
+		free(str);
 	if (fmt->presicion < FMTLEN(fmt) && fmt->presicionflag == 1)
 		presicionstring(fmt, fmt->presicion);
 	if (fmt->width > fmt->presicion || fmt->width > FMTLEN(fmt))
@@ -94,11 +100,6 @@ void	strflag(t_struct *fmt)
 				flagspace(fmt, FMTLEN(fmt));
 		}
 	}
-	if (fmt->formatstr == NULL && ft_strchr("s", fmt->format)
-		&& fmt->presicionflag != 1)
-		fmt->formatstr = ft_strappend(fmt->formatstr, str);
-	else
-		free(str);
 }
 
 void	charflag(t_struct *fmt)
