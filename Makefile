@@ -6,7 +6,7 @@
 #    By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/17 14:59:54 by shagazi           #+#    #+#              #
-#    Updated: 2018/06/02 14:12:13 by shagazi          ###   ########.fr        #
+#    Updated: 2018/06/03 21:46:08 by shagazi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME = libftprintf.a
@@ -24,7 +24,7 @@ DEBUG = -g
 
 # src & obj files
 SRC_FILES = ft_printf.c argcast.c flags.c parse.c precision.c convertcount.c \
-formathex.c formatstrchar.c formatint.c
+formathex.c formatstr.c formatint.c formatchar.c
 OBJ_FILES = $(SRC_FILES:.c=.o)
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJ = $(addprefix $(OBJ_DIR), $(OBJ_FILES))

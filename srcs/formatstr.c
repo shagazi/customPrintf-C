@@ -1,43 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   formatstrchar.c                                    :+:      :+:    :+:   */
+/*   formatstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 13:46:23 by shagazi           #+#    #+#             */
-/*   Updated: 2018/06/03 19:10:51 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/06/03 21:47:08 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-
-void	printchar(t_struct *fmt)
-{
-	if (FLGNEG(fmt))
-	{
-		if (fmt->spaces != NULL)
-		{
-			fmt->formatstr = ft_strappend(fmt->formatstr, fmt->spaces);
-			ft_putchar(fmt->formatchar);
-			ft_putstr(fmt->formatstr);
-		}
-		else
-			ft_putchar(fmt->formatchar);
-	}
-	else
-	{
-		if (fmt->spaces != NULL || fmt->zeros != NULL)
-		{
-			fmt->formatstr = ft_strappend(fmt->spaces, fmt->formatstr);
-			fmt->formatstr = ft_strappend(fmt->zeros, fmt->formatstr);
-			ft_putstr(fmt->formatstr);
-			ft_putchar(fmt->formatchar);
-		}
-		else
-			ft_putchar(fmt->formatchar);
-	}
-}
 
 void	printwidestr(t_struct *fmt)
 {
@@ -69,8 +42,16 @@ void	formatstr(t_struct *fmt)
 		fmt->formatstr = ft_strappend(fmt->formatstr, fmt->spaces);
 	else if (fmt->spaces || fmt->zeros)
 	{
-		fmt->formatstr = ft_strappend(fmt->spaces, fmt->formatstr);
-		fmt->formatstr = ft_strappend(fmt->zeros, fmt->formatstr);
+		if (fmt->negwidth < 0)
+		{
+			fmt->formatstr = ft_strappend(fmt->formatstr, fmt->spaces);
+			fmt->formatstr = ft_strappend(fmt->formatstr, fmt->zeros);
+		}
+		else
+		{
+			fmt->formatstr = ft_strappend(fmt->spaces, fmt->formatstr);
+			fmt->formatstr = ft_strappend(fmt->zeros, fmt->formatstr);
+		}
 	}
 	if (fmt->format == 'S')
 		printwidestr(fmt);
@@ -98,18 +79,4 @@ void	strflag(t_struct *fmt)
 				flagspace(fmt, FMTLEN(fmt));
 		}
 	}
-}
-
-void	charflag(t_struct *fmt)
-{
-	if (fmt->width > 1)
-	{
-		if (ft_strchr(fmt->flags, '0'))
-			flagzero(fmt, 1);
-		else
-			flagspace(fmt, 1);
-	}
-	if (fmt->width < 0)
-		flagspace(fmt, 1);
-	printchar(fmt);
 }
