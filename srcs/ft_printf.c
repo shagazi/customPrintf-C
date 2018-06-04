@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 20:29:12 by shagazi           #+#    #+#             */
-/*   Updated: 2018/06/03 15:43:48 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/06/03 19:36:33 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,20 +112,3 @@ int		ft_printf(char *format, ...)
 	free(fmt);
 	return (k);
 }
-
-// int main ()
-// {
-//
-// 	int  x= printf("{%*c}\n", -15, 0);
-// 	// int y= printf("{% S}", L"(null)");
-// 	int y = ft_printf("{%*c}\n", -15, 0);
-// 	// ft_printf("{%*c}\n", -15, 0);
-// 	// ft_printf("{%*s}\n", 5, 0);
-// 	// ft_printf("{%5.4s}\n", 0);
-// 	// printf("{%*c}\n", -15, 0);
-// 	// printf("{%*s}\n", 5, 0);
-// 	// printf("{%5.4s}\n", 0);
-// 	printf("%d\n", x);
-// 	printf("%d\n", y );
-// 	return(0);
-// }

@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/30 22:48:00 by shagazi           #+#    #+#             */
-/*   Updated: 2018/06/02 00:08:04 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/06/03 19:36:27 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,8 @@ int		parse_width(char *str, t_struct *fmt, va_list *arg)
 	}
 	else
 		fmt->width = ft_atoi(str);
-	fmt->negwidth = fmt->width;
+	if (fmt->width < 0)
+		fmt->negwidth = fmt->width;
 	return (i);
 }
 

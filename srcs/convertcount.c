@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 17:19:07 by shagazi           #+#    #+#             */
-/*   Updated: 2018/06/03 15:12:40 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/06/03 15:47:17 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@ char	*convert_int_toalpha(void *p, t_struct *fmt)
 {
 	char	f;
 	char	*str;
-	int		*test;
 
-	test = p;
 	str = NULL;
 	f = fmt->format;
 	if (f == 'p')

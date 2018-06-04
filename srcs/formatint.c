@@ -6,7 +6,7 @@
 /*   By: shagazi <shagazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 18:20:38 by shagazi           #+#    #+#             */
-/*   Updated: 2018/06/01 23:59:20 by shagazi          ###   ########.fr       */
+/*   Updated: 2018/06/03 19:32:36 by shagazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	formatint(t_struct *fmt)
 		if (ZEROLEN(fmt) && fmt->presicion != FMTLEN(fmt))
 			str = ft_strappend(str, fmt->zeros);
 		fmt->formatstr = ft_strappend(str, fmt->formatstr);
-		if (SPACELEN(fmt) && fmt->negwidth < 0)
+		if (fmt->negwidth < 0 && SPACELEN(fmt))
 			fmt->formatstr = ft_strappend(fmt->formatstr, fmt->spaces);
 	}
 }
